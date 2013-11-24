@@ -2,14 +2,14 @@
 private ["_aiunit","_xpos","_ypos","_unitpos","_aiGroup","_wppos","_wpradius","_wpnum","_levelnum","_numunits","_rndLOut","_ailoadout","_wp","_aispawnpos","_aiwep1","_aiammo1","_aiwep2","_aiammo2"];
  
     _aiunit = objNull;
-    _aiGroup = createGroup resistance;
+    _aiGroup = createGroup EAST;
     _aispawnpos =_this select 0;
     _wpradius = _this select 1;
     _wpnum = _this select 2;
     _numunits = _this select 3;
     _levelnum = _this select 4;
-  SniperTeam = createGroup resistance;
-	AxeMurderer = createGroup resistance;
+    SniperTeam = createGroup EAST;
+	AxeMurderer = createGroup EAST;
 	publicVariable "SniperTeam";
 	publicVariable "AxeMurderer";
  
@@ -136,7 +136,7 @@ private ["_aiunit","_xpos","_ypos","_unitpos","_aiGroup","_wppos","_wpradius","_
         _aiunit addMagazine _aiammo2;
         _aiunit addMagazine _aiammo2;
 		removeBackpack _aiunit;
-		_aiunit removeWeapon "ItemRadio";
+		_aiunit removeWeapon "ItemRadio","NVGoggles";
 		_aiunit addBackpack "DZ_British_ACU";
 		clearWeaponCargo (unitBackpack _aiunit);
 		clearMagazineCargo (unitBackpack _aiunit);

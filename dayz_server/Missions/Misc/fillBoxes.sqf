@@ -84,3 +84,6 @@ _crate addMagazineCargoGlobal ["SmokeShellPurple", 10];
 _crate addMagazineCargoGlobal ["SmokeShellBlue", 10];
 
 _crate addMagazineCargoGlobal ["SmokeShellYellow", 10];
+
+_crate addMagazineCargoGlobal ["NVGoggles", 10];
+

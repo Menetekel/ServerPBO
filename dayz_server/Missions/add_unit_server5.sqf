@@ -1,4 +1,4 @@
-//Created by axeman Edited by TheSzerdi
+//Created by Axeman Edited by TheSzerdi
 private ["_aiunit","_xpos","_ypos","_unitpos","_aiGroup","_wppos","_wpradius","_wpnum","_levelnum","_numunits","_rndLOut","_ailoadout","_wp","_aispawnpos","_aiwep1","_aiammo1","_aiwep2","_aiammo2"];
  
     _aiunit = objNull;
@@ -8,6 +8,10 @@ private ["_aiunit","_xpos","_ypos","_unitpos","_aiGroup","_wppos","_wpradius","_
     _wpnum = _this select 2;
     _numunits = _this select 3;
     _levelnum = _this select 4;
+	SniperTeam = createGroup EAST;
+	AxeMurderer = createGroup EAST;
+	publicVariable "SniperTeam";
+	publicVariable "AxeMurderer";
  
     _xpos = _aispawnpos select 0;
     _ypos = _aispawnpos select 1;
@@ -22,7 +26,7 @@ private ["_aiunit","_xpos","_ypos","_unitpos","_aiGroup","_wppos","_wpradius","_
         {
             if ((x == 1) || (x == 3) || (x == 5)) then //troop soldiers
             {
-                "Bandit1_DZ" createUnit [_unitpos, _aiGroup, "_aiunit=this;",1,"PRIVATE"];
+                "Survivor2_DZ" createUnit [_unitpos, _aiGroup, "_aiunit=this;",1,"PRIVATE"];
                 _rndLOut=floor(random 4);
                 _ailoadout=
                 switch (_rndLOut) do
@@ -35,7 +39,7 @@ private ["_aiunit","_xpos","_ypos","_unitpos","_aiGroup","_wppos","_wpradius","_
             };
             if ((x == 2) || (x == 4) || (x >= 6)) then //troops snipers
             {
-                "Bandit1_DZ" createUnit [_unitpos, _aiGroup, "_aiunit=this;",1,"PRIVATE"];
+                "Survivor2_DZ" createUnit [_unitpos, _aiGroup, "_aiunit=this;",1,"PRIVATE"];
                 _rndLOut=floor(random 3);
                 _ailoadout=
                 switch (_rndLOut) do
@@ -50,47 +54,53 @@ private ["_aiunit","_xpos","_ypos","_unitpos","_aiGroup","_wppos","_wpradius","_
         {
             if (x == 1) then //one troops comander
             {
-                "Bandit1_DZ" createUnit [_unitpos, _aiGroup, "_aiunit=this;",1,"LIEUTENANT"];
-                _rndLOut=floor(random 7);
-                _ailoadout=
-                switch (_rndLOut) do
-                {
-                  case 0: {["AK_47_M","30Rnd_762x39_AK47","MakarovSD","8Rnd_9x18_Makarov"]};
-                  case 1: {["M4A1_RCO_GL","30Rnd_762x39_AK47","M9SD","15Rnd_9x19_M9SD"]};
-                  case 2: {["Sa58P_EP1","30Rnd_762x39_SA58","MakarovSD","8Rnd_9x18_Makarov"]};
-                  case 3: {["Sa58V_CCO_EP1","30Rnd_762x39_SA58","M9SD","15Rnd_9x19_M9SD"]};
-                  case 4: {["Sa58V_EP1","30Rnd_762x39_SA58","MakarovSD","8Rnd_9x18_Makarov"]};
-                  case 5: {["M4SPR","30Rnd_556x45_Stanag","M9SD","15Rnd_9x19_M9SD"]};
-                  case 6: {["M4A1_HWS_GL_SD_Camo","30Rnd_556x45_StanagSD","MakarovSD","8Rnd_9x18_Makarov"]};
-                };
-            };
-            if ((x == 2) || (x == 3)) then //troops sergeant
-            {
-                "Bandit1_DZ" createUnit [_unitpos, _aiGroup, "_aiunit=this;",1,"SERGEANT"];
+                "Ins_Soldier_1" createUnit [_unitpos, SniperTeam, "_aiunit=this;",1,"LIEUTENANT"];
+         
                 _rndLOut=floor(random 4);
                 _ailoadout=
                 switch (_rndLOut) do
                 {
-                  case 0: {["BAF_L85A2_RIS_SUSAT","30Rnd_556x45_Stanag","glock17_EP1","17Rnd_9x19_glock17"]};
-                  case 1: {["RPK_74","75Rnd_545x39_RPK","M9","15Rnd_9x19_M9"]};
-                  case 2: {["G36A_camo","30Rnd_556x45_G36","MakarovSD","8Rnd_9x18_Makarov"]};
-                  case 3: {["M4A1_HWS_GL_SD_Camo","30Rnd_556x45_StanagSD","MakarovSD","8Rnd_9x18_Makarov"]};
+                  case 0: {["SVD_CAMO","10Rnd_762x54_SVD","Sa61_EP1","20Rnd_B_765x17_Ball"]};
+                  case 1: {["M24","5Rnd_762x51_M24","Sa61_EP1","20Rnd_B_765x17_Ball"]};
+                  case 2: {["M40A3","5Rnd_762x51_M24","Sa61_EP1","20Rnd_B_765x17_Ball"]};
+                  case 3: {["VSS_vintorez_DZ","20Rnd_9x39_SP5_VSS","Sa61_EP1","20Rnd_B_765x17_Ball"]};
+                };
+            };
+            if ((x == 2) || (x == 3)) then //troops sergeant
+            {
+                "Ins_Soldier_1" createUnit [_unitpos, SniperTeam, "_aiunit=this;",1,"SERGEANT"];
+         
+                _rndLOut=floor(random 4);
+                _ailoadout=
+                switch (_rndLOut) do
+                {
+                  case 0: {["SVD_CAMO","10Rnd_762x54_SVD","Sa61_EP1","20Rnd_B_765x17_Ball"]};
+                  case 1: {["M24","5Rnd_762x51_M24","Sa61_EP1","20Rnd_B_765x17_Ball"]};
+                  case 2: {["M40A3","5Rnd_762x51_M24","Sa61_EP1","20Rnd_B_765x17_Ball"]};
+                  case 3: {["VSS_vintorez_DZ","20Rnd_9x39_SP5_VSS","Sa61_EP1","20Rnd_B_765x17_Ball"]};
                 };
             };
             if (x > 3) then //troops soldiers
             {
-                "Ins_Soldier_1" createUnit [_unitpos, _aiGroup, "_aiunit=this;",1,"CORPORAL"];
+                "Ins_Soldier_1" createUnit [_unitpos, SniperTeam, "_aiunit=this;",1,"CORPORAL"];
          
-                _rndLOut=floor(random 5);
+                _rndLOut=floor(random 4);
                 _ailoadout=
                 switch (_rndLOut) do
                 {
-                  case 0: {["SVD_CAMO","10Rnd_762x54_SVD","MakarovSD","8Rnd_9x18_Makarov"]};
-                  case 1: {["M24","5Rnd_762x51_M24","MakarovSD","8Rnd_9x18_Makarov"]};
-                  case 2: {["M24_des_EP1","5Rnd_762x51_M24","MakarovSD","8Rnd_9x18_Makarov"]};
-                  case 3: {["SVD","10Rnd_762x54_SVD","MakarovSD","8Rnd_9x18_Makarov"]};
-			      case 4: {["AK_107_pso","30Rnd_545x39_AK","M9","15Rnd_9x19_M9"]};
+                  case 0: {["SVD_CAMO","10Rnd_762x54_SVD","Sa61_EP1","20Rnd_B_765x17_Ball"]};
+                  case 1: {["M24","5Rnd_762x51_M24","Sa61_EP1","20Rnd_B_765x17_Ball"]};
+                  case 2: {["M40A3","5Rnd_762x51_M24","Sa61_EP1","20Rnd_B_765x17_Ball"]};
+                  case 3: {["VSS_vintorez_DZ","20Rnd_9x39_SP5_VSS","Sa61_EP1","20Rnd_B_765x17_Ball"]};
                 };
+            };
+        };
+        if (_levelnum==2) then // in_sityes troops
+        {
+            if ((x == 1) || (x == 3) || (x == 5)) then //troop soldiers
+            {
+                "Bandit1_DZ" createUnit [_unitpos, AxeMurderer, "_aiunit=this;",1,"PRIVATE"];
+                _ailoadout= ["MeleeHatchet","5Rnd_762x51_M24","Makarov","20Rnd_B_765x17_Ball"]
             };
         };
         diag_log format ["AIUNIT: Creating Ins_Soldier_1 by %1 at %2. Result:%3 | Loadout:%4 / Num:%5",player,_unitpos,_aiunit,_ailoadout,_rndLOut];
@@ -101,7 +111,7 @@ private ["_aiunit","_xpos","_ypos","_unitpos","_aiGroup","_wppos","_wpradius","_
         _aiunit enableAI "ANIM";
         _aiunit enableAI "FSM";
         _aiunit allowDammage true;
-  	
+		
 		_aiunit addEventHandler ['killed',{_this execVM "\z\addons\dayz_server\Missions\bodyclean.sqf"}]; //Body disappear time
  
         _aiunit setCombatMode "RED";
@@ -121,7 +131,10 @@ private ["_aiunit","_xpos","_ypos","_unitpos","_aiGroup","_wppos","_wpradius","_
         _aiunit addweapon _aiwep2;
         _aiunit addMagazine _aiammo2;
         _aiunit addMagazine _aiammo2;
-		_aiunit removeWeapon "ItemRadio","NVGoggles";
+		removeBackpack _aiunit;
+		_aiunit addBackpack "BAF_AssaultPack_DZ";
+		clearWeaponCargo (unitBackpack _aiunit);
+		clearMagazineCargo (unitBackpack _aiunit);
       //add some garbage
         if (x == 1) then {
         _aiunit addMagazine "SmokeShellGreen";
@@ -143,6 +156,42 @@ private ["_aiunit","_xpos","_ypos","_unitpos","_aiGroup","_wppos","_wpradius","_
         _aiunit addMagazine "ItemHeatPack";
         _aiunit addMagazine "ItemBandage";
         };
+		
+		if (_levelnum==2) then {
+			_aiunit addEventHandler ["HandleDamage",{if (_this select 1!="") then {_unit=_this select 0;damage _unit+((_this select 2)-damage _unit)*0.2}}];
+			removeAllWeapons _aiunit;
+			_aiwep1 = _ailoadout select 0;
+			_aiunit addweapon _aiwep1;
+			removeBackpack _aiunit;
+			_aiunit addBackpack "DZ_Backpack_EP1";
+			clearWeaponCargo (unitBackpack _aiunit);
+			clearMagazineCargo (unitBackpack _aiunit);
+			unitBackpack _aiunit addMagazineCargo ["ItemBloodbag",5];
+			unitBackpack _aiunit addMagazineCargo ["ItemPainkiller",2];
+			unitBackpack _aiunit addMagazineCargo ["ItemMorphine",2];
+			unitBackpack _aiunit addMagazineCargo ["ItemBandage",4];
+			unitBackpack _aiunit addMagazineCargo ["FoodCanBakedBeans",2];
+			unitBackpack _aiunit addMagazineCargo ["ItemSodaCoke",2];
+			unitBackpack _aiunit addMagazineCargo ["ItemJerryCan",1];
+			unitBackpack _aiunit addMagazineCargo ["PipeBomb",2];
+		};
+		if (_levelnum==1) then {
+			removeBackpack _aiunit;
+			_aiunit addBackpack "DZ_CivilBackpack_EP1";
+			clearWeaponCargo (unitBackpack _aiunit);
+			clearMagazineCargo (unitBackpack _aiunit);
+			unitBackpack _aiunit addWeaponCargo ["NVGoggles",1];
+			unitBackpack _aiunit addMagazineCargo ["ItemBloodbag",1];
+			unitBackpack _aiunit addMagazineCargo ["ItemPainkiller",1];
+			unitBackpack _aiunit addMagazineCargo ["ItemMorphine",1];
+			unitBackpack _aiunit addMagazineCargo ["ItemBandage",2];
+			unitBackpack _aiunit addMagazineCargo ["FoodCanBakedBeans",2];
+			unitBackpack _aiunit addMagazineCargo ["ItemSodaCoke",2];
+			unitBackpack _aiunit addMagazineCargo ["PipeBomb",2];
+			unitBackpack _aiunit addMagazineCargo ["Mine",2];
+		};
+		
+		
         //set skills
         _aiunit setSkill ["aimingAccuracy",0.6];
         _aiunit setSkill ["aimingShake",0.7];
@@ -151,7 +200,7 @@ private ["_aiunit","_xpos","_ypos","_unitpos","_aiGroup","_wppos","_wpradius","_
         _aiunit setSkill ["spotDistance",0.8];
         _aiunit setSkill ["spotTime",0.7];
         _aiunit setSkill ["courage",0.9];
-        _aiunit setSkill ["reloadSpeed",0.8];
+        _aiunit setSkill ["reloadSpeed",1];
         _aiunit setSkill ["commanding",1];
         _aiunit setSkill ["general",1];
         //sleep 0.5;

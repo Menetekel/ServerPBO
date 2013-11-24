@@ -2,11 +2,11 @@
 private ["_aiunit","_xpos","_ypos","_unitpos","_aiGroup","_levelnum","_numunits","_rndLOut","_ailoadout","_aispawnpos","_aiwep1","_aiammo1","_aiwep2","_aiammo2"];
  
     _aiunit = objNull;
-    _aiGroup = createGroup resistance;
+    _aiGroup = createGroup EAST;
     _aispawnpos =_this select 0;
     _numunits = _this select 1;
     _levelnum = _this select 2;
-	LandingParty = createGroup resistance;
+	LandingParty = createGroup EAST;
 	publicVariable "LandingParty";
  
     _xpos = _aispawnpos select 0;
@@ -121,7 +121,7 @@ private ["_aiunit","_xpos","_ypos","_unitpos","_aiGroup","_levelnum","_numunits"
         _aiunit addweapon _aiwep2;
         _aiunit addMagazine _aiammo2;
         _aiunit addMagazine _aiammo2;
-		_aiunit removeWeapon "ItemRadio";
+		_aiunit removeWeapon "ItemRadio","NVGoggles";
       //add some garbage
         if (x == 1) then {
         _aiunit addMagazine "SmokeShellGreen";

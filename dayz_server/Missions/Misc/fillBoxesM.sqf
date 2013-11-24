@@ -31,4 +31,6 @@ _crate addMagazineCargoGlobal ["SmokeShellBlue", 20];
 
 _crate addMagazineCargoGlobal ["SmokeShellYellow", 20];
 
+_crate addMagazineCargoGlobal ["NVGoggles", 20];
+
 _crate addBackpackCargoGlobal ['DZ_Backpack_EP1', 1];
