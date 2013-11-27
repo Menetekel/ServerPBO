@@ -88,6 +88,7 @@ _key call server_hiveWrite;
 	if(!_donotusekey) then {
 		// Lock vehicle
 		_object setvehiclelock "locked";
+		_object setVariable ["R3F_LOG_disabled",true,true];
 	};
 
 	clearWeaponCargoGlobal  _object;
@@ -112,12 +113,8 @@ _key call server_hiveWrite;
 
 	_object call fnc_veh_ResetEH;
      [_object, _class] call fnc_veh_Ammo; //starfish
-	 
 //if (_object isKindOf "AllVehicles") then {
- //        _object setVehicleAmmo 0;
- //        _object removeWeapon "StingerLaucher";
- //        _object removeWeapon "M3P";
- //        _object addWeapon "M240_veh";
+//        _object setVehicleAmmo 0;
 //         };
 	// for non JIP users this should make sure everyone has eventhandlers for vehicles.
 	PVDZE_veh_Init = _object;

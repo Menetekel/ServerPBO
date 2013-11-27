@@ -4,31 +4,15 @@
     _type = _this select 1;
      
      
-     diag_log format ["DEBUG: VEHICLE: %1 Adding Ammo", _type];
+     diag_log format ["DEBUG: VEHICLE: %1 Adding Ammo through fnc_vehicle_Ammo", _type];
      
     switch (_type) do
-    {
-	        case "BAF_Jackal2_L2A1_D"        : {
-                                                                            _vehicle setVehicleAmmo 0; 
-                                                            };
-            case "BAF_Jackal2_L2A1_w"        : {
-                                                                            _vehicle setVehicleAmmo 0;
-                                                            };
-            case "BAF_Jackal2_GMG_D"        : {
-                                                                            _vehicle setVehicleAmmo 0;
-																			_vehicle removeWeapon "M240";
-                                                            };
-            case "BAF_Jackal2_GMG_w"        : {
-                                                                            _vehicle setVehicleAmmo 0;
-																			_vehicle removeWeapon "GMG";																		
-                                                            };																
+    {															
             case "Mi17_DZE"        : {
                                                                             _vehicle addMagazineTurret ["100Rnd_762x54_PK",[0]];
                                                                             _vehicle addMagazineTurret ["100Rnd_762x54_PK",[1]];
                                                             };
             case "GAZ_Vodnik_HMG"   : {
-																			_vehicle removeWeapon ["2A42"];
-																			_vehicle removeWeapon ["PKT"];
 																			_vehicle setVehicleAmmo 0;  
 																			};
             case "UH1Y_DZE"         : {
@@ -81,5 +65,5 @@
             case "Pickup_PK_INS_DZE"        : {
                                                                             _vehicle addMagazineTurret ["100Rnd_762x54_PK",[0]];
                                                                             };
-    };
+			};
 

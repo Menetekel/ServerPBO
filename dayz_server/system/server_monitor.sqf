@@ -267,10 +267,13 @@ if (isServer and isNil "sm_done") then {
 				if (!((typeOf _object) in dayz_allowedObjects)) then {
 					
 					//_object setvelocity [0,0,1];
-					_object call fnc_veh_ResetEH;		
+					_object call fnc_veh_ResetEH;	
+					
 					[_object, _class] call fnc_veh_ammo; //starfish
+					
 					if(_ownerID != "0" and !(_object isKindOf "Bicycle")) then {
 						_object setvehiclelock "locked";
+						_object setVariable ["R3F_LOG_disabled",true,true];
 					};
 					
 					_totalvehicles = _totalvehicles + 1;
