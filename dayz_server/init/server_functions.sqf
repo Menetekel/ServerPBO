@@ -31,6 +31,7 @@ server_spawnEvents =			compile preprocessFileLineNumbers "\z\addons\dayz_server\
 fnc_plyrHit   = 	compile preprocessFileLineNumbers "\z\addons\dayz_server\compile\fnc_plyrHit.sqf";
 server_deaths = 	compile preprocessFileLineNumbers "\z\addons\dayz_server\compile\server_playerDeaths.sqf";
 fnc_veh_ammo =      compile preprocessFileLineNumbers "\z\addons\dayz_server\compile\fnc_vehicle_ammo.sqf";
+fnc_hTime = 		compile preprocessFile "\z\addons\dayz_server\Missions\misc\fnc_hTime.sqf";
 
 vehicle_handleInteract = {
 	private["_object"];
@@ -536,7 +537,16 @@ dayz_recordLogin = {
 	_key = format["CHILD:103:%1:%2:%3:",_this select 0,_this select 1,_this select 2];
 	_key call server_hiveWrite;
 };
-
+//----------InitMissions--------//
+  MissionGo = 0;
+  MissionGoMinor = 0;
+    if (isServer) then {
+  SMarray = ["SM1","SM2","SM3","SM4","SM5","SM6"];
+    [] execVM "\z\addons\dayz_server\missions\major\SMfinder.sqf"; //Starts major mission system
+    SMarray2 = ["SM1","SM2","SM3","SM4","SM5","SM6"];
+    [] execVM "\z\addons\dayz_server\missions\minor\SMfinder.sqf"; //Starts minor mission system
+    };
+    //---------EndInitMissions------//
 server_cleanDead = {
 	private ["_objectPos","_noPlayerNear"];
 	{
