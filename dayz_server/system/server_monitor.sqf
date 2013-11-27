@@ -171,9 +171,9 @@ if (isServer and isNil "sm_done") then {
 			clearWeaponCargoGlobal  _object;
 			clearMagazineCargoGlobal  _object;
 //remove all vehicle ammo on restart, not just epoch starfish
-if (_object isKindOf "AllVehicles") then {
-_object setVehicleAmmo 0;
-};
+//if (_object isKindOf "AllVehicles") then {
+//_object setVehicleAmmo 0;
+//};
 			// _object setVehicleAmmo DZE_vehicleAmmo;
 			
 			if ((typeOf _object) in dayz_allowedObjects) then {

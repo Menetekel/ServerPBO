@@ -8,34 +8,27 @@
      
     switch (_type) do
     {
-	        case "TowingTractor"        : {
-                                                                            _vehicle AddWeapon "SEARCHLIGHT";
-																			_vehicle AddWeapon "SmokeLauncher";
-																			_vehicle AddMagazineTurret ["SmokeLauncherMag",[1];
-                                                            };
-	        case "BAF_ATV_D"        : {
-                                                                            _vehicle AddWeapon "DSHKM";
-																			_vehicle AddMagazineTurret ["50Rnd_127x107_DSHKM",[0]];
-                                                            };
 	        case "BAF_Jackal2_L2A1_D"        : {
                                                                             _vehicle setVehicleAmmo 0; 
                                                             };
             case "BAF_Jackal2_L2A1_w"        : {
-                                                                            _vehicle setVehicleAmmo 0; 
+                                                                            _vehicle setVehicleAmmo 0;
                                                             };
-            case "BAF_Jackal2_L2A1_D"        : {
-                                                                            _vehicle setVehicleAmmo 0; 
+            case "BAF_Jackal2_GMG_D"        : {
+                                                                            _vehicle setVehicleAmmo 0;
+																			_vehicle removeWeapon "M240";
                                                             };
-            case "BAF_Jackal2_L2A1_w"        : {
-                                                                            _vehicle setVehicleAmmo 0; 
-                                                            };															
+            case "BAF_Jackal2_GMG_w"        : {
+                                                                            _vehicle setVehicleAmmo 0;
+																			_vehicle removeWeapon "GMG";																		
+                                                            };																
             case "Mi17_DZE"        : {
                                                                             _vehicle addMagazineTurret ["100Rnd_762x54_PK",[0]];
                                                                             _vehicle addMagazineTurret ["100Rnd_762x54_PK",[1]];
                                                             };
             case "GAZ_Vodnik_HMG"   : {
-																			_vehicle removeWeapon "2A42";
-																			_vehicle removeWeapon "PKT"
+																			_vehicle removeWeapon ["2A42"];
+																			_vehicle removeWeapon ["PKT"];
 																			_vehicle setVehicleAmmo 0;  
 																			};
             case "UH1Y_DZE"         : {
@@ -88,6 +81,5 @@
             case "Pickup_PK_INS_DZE"        : {
                                                                             _vehicle addMagazineTurret ["100Rnd_762x54_PK",[0]];
                                                                             };
-			default {_vehicle setVehicleAmmo 0};
     };
 
