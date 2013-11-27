@@ -28,7 +28,7 @@
 /*  Use _AdminPassword ?  */ _APW = false;   /* true or false */	/* admins need to insert a password on load in */
 /*  Use cut-scene ?       */ _UCS =  true;   /* true or false */	/* dynamicText ~ often colored, animated or used in credits */
 /*  Use SafeZones ?       */ _USZ =  true;   /* true or false */	/* if you have a zone where people get godmode/anti zombie aggro */
-/*  Forbid VON Sidechat   */ _VON = false;   /* true or false */	/* talking on sidechat will put out a warning and kick if continue */
+/*  Forbid VON Sidechat   */ _VON = true;   /* true or false */	/* talking on sidechat will put out a warning and kick if continue */
 /*  Use vehicle check?    */ _UVC = false;   /* true or false */	/* using _ALLOWED_Vehicles and _FORBIDDEN_Vehicles lists */
 /*  Vehicle WHITELIST     */ _UVW = false;   /* true or false */	/* if false - _ALLOWED_Vehicles won't not be used */
 

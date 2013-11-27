@@ -58,7 +58,7 @@ _randvar26 = call _fnc_RandomGen;
 _randvar27 = call _fnc_RandomGen;
 _randvar27a = call _fnc_RandomGen;
 _randvar28 = call _fnc_RandomGen;
-diag_log ("infiSTAR.de ProPlan by infiSTAR.de - AntiHack Loading...");
+diag_log ("GermanDayZ.de - AntiHack Loading...");
 _randvar10 = 'PVAHR_'+(str(round(random 999999)));_randvar12 = 'PVAHR_'+(str(round(random 999999)));
 PV_hackerL0og = [['']];PublicVariable 'PV_hackerL0og';PV_SurveillanceLog = [['']];PublicVariable 'PV_SurveillanceLog';
 if (_MEH) then {DZE_teleport = [500000,0,0,500000,500000];publicVariable 'DZE_teleport';};
@@ -1434,7 +1434,7 @@ if (isNil '"+_randvar0+"') then {"+_randvar0+" = [];publicVariable '"+_randvar0+
 		if (_puid in "+_randvar0+") exitWith {systemChat str ("+_randvar0+");waitUntil {(!isNull (findDisplay 3030))};
 		if (isNil 'AdminLoadOK') then {endMission 'LOSER';}else{if (AdminLoadOK) then {endMission 'LOSER';};};};
 		if ("+str _APW+") then {
-			diag_log 'infiSTAR.de ProPlan by infiSTAR.de - Loading Password Login';diag_log str("+str _AdminPassword+");
+			diag_log 'GermanDayZ.de - Loading Password Login';diag_log str("+str _AdminPassword+");
 			if (isNil '"+_randvar28+"') then {
 				[] spawn {
 					while {true} do {
@@ -1498,8 +1498,8 @@ publicVariable """+_randvar1+""";
 publicVariable """+_randvar9+""";
 publicVariable """+_randvar19+""";
 ");
-diag_log ("infiSTAR.de ProPlan by infiSTAR.de - AntiHack Loaded!");
-diag_log ("infiSTAR.de ProPlan by infiSTAR.de - CREATING AdminMenu");
+diag_log ("GermanDayZ.de - AntiHack Loaded!");
+diag_log ("GermanDayZ.de - CREATING AdminMenu");
 PV_AdminMenuCode = {
 	waitUntil {sleep 0.5;!isNull (findDisplay 46)};
 	[] spawn {
@@ -2559,12 +2559,12 @@ PV_AdminMenuCode = {
 	{
 		private ['_pic','_txt','_selected'];
 		_selected = (adminadd select ((lbCurSel 2))*7);
-		admin_picture = '';admin_text = 'infiSTAR.de';
+		admin_picture = '';admin_text = 'GermanDayZ.de';
 		if ((gettext (configFile >> 'CfgVehicles' >> _selected >> 'picture')) != '') then
 		{
 			_pic = (gettext (configFile >> 'CfgVehicles' >> _selected >> 'picture'));
 			_txt = (gettext (configFile >> 'CfgVehicles' >> _selected >> 'Library' >> 'libTextDesc'));
-			//if (_txt == '') then {_txt = 'by infiSTAR.de';};
+			//if (_txt == '') then {_txt = 'by GermanDayZ.de';};
 			admin_picture = _pic;
 			admin_text = _txt;
 			[] spawn {
@@ -2572,7 +2572,7 @@ PV_AdminMenuCode = {
 				{
 					hintSilent parseText format["<img size='7' image='%1'/><br/><br/><t size='1.2'font='TahomaB'>%2</t>",admin_picture,admin_text];
 					if (isNull finddisplay 3030) exitWith {hintSilent '';admin_picture = '';admin_text = '';};
-					//if (isNull finddisplay 3030) exitWith {hintSilent '';admin_picture = '';admin_text = 'by infiSTAR.de';};
+					//if (isNull finddisplay 3030) exitWith {hintSilent '';admin_picture = '';admin_text = 'by GermanDayZ.de';};
 				};
 			};
 		};
@@ -2580,14 +2580,14 @@ PV_AdminMenuCode = {
 		{
 			_pic = (gettext (configFile >> 'cfgMagazines' >> _selected >> 'picture'));
 			_txt = (gettext (configFile >> 'cfgMagazines' >> _selected >> 'Library' >> 'libTextDesc'));
-			if (_txt == '') then {_txt = 'by infiSTAR.de';};
+			if (_txt == '') then {_txt = 'by GermanDayZ.de';};
 			admin_picture = _pic;
 			admin_text = _txt;
 			[] spawn {
 				while {true} do
 				{
 					hintSilent parseText format["<img size='7' image='%1'/><br/><br/><t size='1.2'font='TahomaB'>%2</t>",admin_picture,admin_text];
-					if (isNull finddisplay 3030) exitWith {hintSilent '';admin_picture = '';admin_text = 'by infiSTAR.de';};
+					if (isNull finddisplay 3030) exitWith {hintSilent '';admin_picture = '';admin_text = 'by GermanDayZ.de';};
 				};
 			};
 		};
@@ -2595,7 +2595,7 @@ PV_AdminMenuCode = {
 		{
 			_pic = (gettext (configFile >> 'cfgWeapons' >> _selected >> 'picture'));
 			_txt = (gettext (configFile >> 'cfgWeapons' >> _selected >> 'Library' >> 'libTextDesc'));
-			//if (_txt == '') then {_txt = 'by infiSTAR.de';};
+			//if (_txt == '') then {_txt = 'by GermanDayZ.de';};
 			admin_picture = _pic;
 			admin_text = _txt;
 			[] spawn {
@@ -2604,7 +2604,7 @@ PV_AdminMenuCode = {
 					if (admin_picture != '') then {
 						hintSilent parseText format["<img size='7' image='%1'/><br/><br/><t size='1.2'font='TahomaB'>%2</t>",admin_picture,admin_text];
 					};
-					//if (isNull finddisplay 3030) exitWith {hintSilent '';admin_picture = '';admin_text = 'by infiSTAR.de';};
+					//if (isNull finddisplay 3030) exitWith {hintSilent '';admin_picture = '';admin_text = 'by GermanDayZ.de';};
 					if (isNull finddisplay 3030) exitWith {hintSilent '';admin_picture = '';admin_text = '';};
 				};
 			};
@@ -4426,7 +4426,7 @@ PV_AdminMenuCode = {
 	if (isNil 'admin_announce') then {admin_announce = true;};
 };
 publicVariable "PV_AdminMenuCode";
-diag_log ("infiSTAR.de ProPlan by infiSTAR.de - ADDING PublicVariableEventHandlers");
+diag_log ("GermanDayZ.de - ADDING PublicVariableEventHandlers");
 "PVAH_WriteLogRequest" addPublicVariableEventHandler
 {
 	_array = _this select 1;
@@ -5177,4 +5177,4 @@ diag_log ("infiSTAR.de ProPlan by infiSTAR.de - ADDING PublicVariableEventHandle
 		_unit = createAgent ["Sheep", [4000,4000,0], [], 0, "FORM"];_unit setVehicleInit _do;processInitCommands;deleteVehicle _unit;
 	};
 };
-diag_log ("infiSTAR.de ProPlan by infiSTAR.de - FULLY LOADED");
+diag_log ("GD Admin Menu - Loading Complete");
