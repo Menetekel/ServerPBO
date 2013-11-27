@@ -170,7 +170,7 @@ if (isServer and isNil "sm_done") then {
 			
 			clearWeaponCargoGlobal  _object;
 			clearMagazineCargoGlobal  _object;
-//remove all vehicle ammo on restart, not just epoch
+//remove all vehicle ammo on restart, not just epoch starfish
 if (_object isKindOf "AllVehicles") then {
 _object setVehicleAmmo 0;
 };
@@ -268,7 +268,7 @@ _object setVehicleAmmo 0;
 					
 					//_object setvelocity [0,0,1];
 					_object call fnc_veh_ResetEH;		
-					
+					[_object, _class] call fnc_veh_ammo; //starfish
 					if(_ownerID != "0" and !(_object isKindOf "Bicycle")) then {
 						_object setvehiclelock "locked";
 					};

@@ -111,7 +111,14 @@ _key call server_hiveWrite;
 	PVDZE_serverObjectMonitor set [count PVDZE_serverObjectMonitor,_object];
 
 	_object call fnc_veh_ResetEH;
-	
+     [_object, _class] call fnc_veh_Ammo; //starfish
+	 
+//if (_object isKindOf "AllVehicles") then {
+ //        _object setVehicleAmmo 0;
+ //        _object removeWeapon "StingerLaucher";
+ //        _object removeWeapon "M3P";
+ //        _object addWeapon "M240_veh";
+//         };
 	// for non JIP users this should make sure everyone has eventhandlers for vehicles.
 	PVDZE_veh_Init = _object;
 	publicVariable "PVDZE_veh_Init";

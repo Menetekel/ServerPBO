@@ -28,9 +28,9 @@ server_spawnCrashSite  =    compile preprocessFileLineNumbers "\z\addons\dayz_se
 server_handleZedSpawn =		compile preprocessFileLineNumbers "\z\addons\dayz_server\compile\server_handleZedSpawn.sqf";
 server_spawnEvents =			compile preprocessFileLineNumbers "\z\addons\dayz_server\compile\server_spawnEvent.sqf";
 
-fnc_plyrHit   = compile preprocessFileLineNumbers "\z\addons\dayz_server\compile\fnc_plyrHit.sqf";
-server_deaths = 			compile preprocessFileLineNumbers "\z\addons\dayz_server\compile\server_playerDeaths.sqf";
-
+fnc_plyrHit   = 	compile preprocessFileLineNumbers "\z\addons\dayz_server\compile\fnc_plyrHit.sqf";
+server_deaths = 	compile preprocessFileLineNumbers "\z\addons\dayz_server\compile\server_playerDeaths.sqf";
+fnc_veh_ammo =      compile preprocessFileLineNumbers "\z\addons\dayz_server\compile\fnc_vehicle_ammo.sqf";
 
 vehicle_handleInteract = {
 	private["_object"];
