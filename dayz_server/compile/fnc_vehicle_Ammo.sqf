@@ -9,12 +9,15 @@
     switch (_type) do
     {															
             case "Mi17_DZE"        : {
-                                                                            _vehicle addMagazineTurret ["100Rnd_762x54_PK",[0]];
-                                                                            _vehicle addMagazineTurret ["100Rnd_762x54_PK",[1]];
+                                                                            _vehicle setVehicleAmmo 0;
                                                             };
             case "GAZ_Vodnik_HMG"   : {
-																			_vehicle setVehicleAmmo 0;  
+																			_vehicle setVehicleAmmo "0";
+																			_vehicle removeWeapon "2A42";
+																			_vehicle removeMagazine "1500Rnd_762x54_PKT";
+																			_Vehicle removeMagazinesTurret ["1500Rnd_762x54_PKT",[0]]
 																			};
+/*
             case "UH1Y_DZE"         : {
                                                                             _vehicle addMagazineTurret ["2000Rnd_762x51_M134",[0]];
                                                                             _vehicle addMagazineTurret ["2000Rnd_762x51_M134",[1]];
@@ -65,5 +68,6 @@
             case "Pickup_PK_INS_DZE"        : {
                                                                             _vehicle addMagazineTurret ["100Rnd_762x54_PK",[0]];
                                                                             };
+*/
 			};
 
