@@ -3,7 +3,7 @@
 /* *********************************www.infiSTAR.de********************************* */
 /* *******************Developer : infiSTAR (infiSTAR23@gmail.com)******************* */
 /* ********************Copr. ©2013 infiSTAR all rights reserved********************* */
-/* *********************************28112013V00317********************************** */
+/* *********************************22112013V00316********************************** */
 /* ********************************************************************************* */
 waituntil {!isnil 'bis_fnc_init'};
 markerText = 'STRING';markerColor = 'STRING';markerBrush = 'STRING';
@@ -117,8 +117,7 @@ call compile ("
 			'menu_run','ZedProtect','actid1','vehicles1','MapClicked','MapClickedPosX','MouseUpEvent',
 			'G_A_N_G_S_T_A','ZoombiesCar','timebypass','returnString_z','isori','tangrowth27',
 			'AH_OFF_LOL','infiSTAR_fillRE','qwak','infoe','font','title_dialog','sexymenu_adds_Star',
-			'endMission','failMission','closeDisplay','diag_ticktime'];
-			
+			'endMission','failMission','closeDisplay'];
 			
 			if (!(isNull player) && (isNil '"+_randvar26+"') && ((!isNil 'dayz_animalCheck') or (!isNil 'dayz_medicalH') or (!isNil 'dayz_gui') or (!isNil 'dayz_slowCheck'))) then
 			{
@@ -226,7 +225,7 @@ call compile ("
 	_SPCA = str([[nil,nil,'per','execVM','ca\Modules\Functions\init.sqf']]);
 	sleep 5;
 	_RESO = {
-		AHV=(""28112013V00317"");
+		AHV=(""17112013V00316"");
 		if ((_this select 1) select 2 == ""JIPrequest"") then
 		{
 			_playerObj = (_this select 1) select 0;			
@@ -451,21 +450,9 @@ call compile ("
 					(findDisplay 46) displayRemoveAllEventHandlers 'KeyDown';
 					(findDisplay 46) displayAddEventHandler ['KeyDown','_this call dayz_spaceInterrupt'];
 				};
-				if (!isNull (findDisplay 17) or !isNull (findDisplay 64) or !isNull (findDisplay 155) or !isNull (findDisplay 156) or !isNull (findDisplay 162) or !isNull (findDisplay 2929) or !isNull (findDisplay 3030)) then
+				if (!isNull (findDisplay 17) or !isNull (findDisplay 64) or !isNull (findDisplay 155) or !isNull (findDisplay 162) or !isNull (findDisplay 2929) or !isNull (findDisplay 3030)) then
 				{
-					_foundDisplays = [];
-					for '_y' from -10 to 9999 do
-					{
-						if (!isNull (findDisplay _y)) then 
-						{
-							if !(_y in _foundDisplays) then 
-							{
-								_foundDisplays = _foundDisplays + [_y];
-							};
-						};
-					};
-					
-					"+_randvar10+" = [_name, _puid, toArray ('Active Menu'), toArray (_foundDisplays)];
+					"+_randvar10+" = [_name, _puid, toArray ('Active Menu'), toArray ('BAN!')];
 					publicVariableServer '"+_randvar10+"';
 					(findDisplay 46) closeDisplay 0;
 				};
@@ -504,15 +491,14 @@ call compile ("
 				sleep 0.00001;
 				if ("+str _CCM+") then
 				{
-					_cmmndMenu = commandingMenu;
-					if !(_cmmndMenu in "+(str _cMenu)+") then
+					if ((commandingMenu != '') && !(commandingMenu in "+(str _cMenu)+")) then
 					{
-						_log = format['BadCommandingMenu: %1',_cmmndMenu];
+						_log = format['BadCommandingMenu: %1',commandingMenu];
 						"+_randvar10+" = [name player, getPlayerUID player, _log];
 						publicVariableServer '"+_randvar10+"';
 						(findDisplay 46) closeDisplay 0;
+						showCommandingMenu '';
 					};
-					sleep 0.00001;
 					if ("+str _BCM+") then {showCommandingMenu '';};
 				};
 				sleep 0.00001;
@@ -584,9 +570,9 @@ call compile ("
 			sleep 10;
 			while {1 == 1} do
 			{
-				if (isNil 'DayZ_onBack') then {DayZ_onBack = '';};
+				if (isNil 'dayz_onBack') then {dayz_onBack = '';};
 				_inv_plr = ((magazines player)+(weapons player));
-				_inv_plr = _inv_plr + [DayZ_onBack];
+				_inv_plr = _inv_plr + [dayz_onBack];
 				if (!isNull (unitbackpack player)) then
 				{
 					_pUBM_plr = (getMagazineCargo unitbackpack player) select 0;
@@ -601,7 +587,8 @@ call compile ("
 				{
 					if ((!isNull _x) && (_x != player)) then
 					{
-						_foundItemsNEARCOUNT = 0;
+						_inventory2 = [];
+						_foundItemsNEAR2 = [];
 						
 						_inv = [];
 						_inv = ((magazines _x)+(weapons _x));
@@ -614,29 +601,34 @@ call compile ("
 						if (str(_inv) != '[]') then
 						{
 							_inventory = _inventory + _inv;
+							_inventory2 = _inventory2 + _inv;
 						};
 						
 						_infiSTAR = ((getMagazineCargo _x)+(getWeaponCargo _x));
 						if (str(_infiSTAR) != '[[],[],[],[]]') then
 						{
-							{_foundItemsNEARCOUNT = _foundItemsNEARCOUNT + _x;} forEach ((_infiSTAR select 1)+(_infiSTAR select 3));
 							{
 								if !(_x in _foundItemsNEAR) then
 								{
 									_foundItemsNEAR = _foundItemsNEAR + [_x];
 								};
+								_foundItemsNEAR2 = _foundItemsNEAR2 + [_x];
 							} forEach (_infiSTAR select 0);
 							{
 								if !(_x in _foundItemsNEAR) then
 								{
 									_foundItemsNEAR = _foundItemsNEAR + [_x];
 								};
+								_foundItemsNEAR2 = _foundItemsNEAR2 + [_x];
 							} forEach (_infiSTAR select 2);
 						};
 						
 						
 						if ("+str _CHB+") then
 						{
+							_cntInv = count _inventory2;
+							_cntFN = count _foundItemsNEAR2;
+							_cntSUM = _cntInv + _cntFN;
 							if (typeOf _x == 'Foodbox0') then
 							{
 								_x hideObject true;
@@ -644,28 +636,30 @@ call compile ("
 							}
 							else
 							{
-								if (_foundItemsNEARCOUNT > 194) then
+								if ((_cntSUM > 200) && !(typeOf _x in ['VaultStorage','VaultStorageLocked','StorageShed_DZ'])) then
 								{
-									if ((_x isKindOf 'static') && !(typeOf _x in ['Wooden_shed_DZ','VaultStorage','StorageShed_DZ'])) then
+									if (_x in vehicles) then
+									{
+										_vehicle = _x;
+										{
+											if (!isnull _x) then
+											{
+												_x action ['eject', _vehicle];
+											};
+										} foreach crew _vehicle;
+										_vehicle setVehicleLock 'LOCKED';
+									}
+									else
 									{
 										_x hideObject true;
 										if (!isNull (findDisplay 106)) then {(findDisplay 106) closeDisplay 0;};
+										
 										_pos = getPos _x;
 										_x setPos [_pos select 0,_pos select 1,(_pos select 2)+35];
-										
-										_show = (format['BAD CARGO: [%1 | %2(%3) | %4 | pos: %5]',typeOf _x,name _x,getPlayerUID _x,_foundItemsNEARCOUNT,mapGridPosition _pos]);
-										"+_randvar10+" = [name player, getPlayerUID player, toArray (_show), toArray ('BANNED')];
-										publicVariableServer '"+_randvar10+"';
-										(findDisplay 46) closeDisplay 0;
 									};
-									if (!(_x isKindOf 'static') && (_foundItemsNEARCOUNT > 300)) then
+									if (getPlayerUID _x == '') then
 									{
-										_x hideObject true;
-										if (!isNull (findDisplay 106)) then {(findDisplay 106) closeDisplay 0;};
-										_pos = getPos _x;
-										_x setPos [_pos select 0,_pos select 1,(_pos select 2)+35];
-										
-										_show = (format['SUSPICIOUS CARGO: [%1 | %2(%3) | %4/%5 | pos: %6]',typeOf _x,name _x,getPlayerUID _x,_CntSum,_foundItemsNEARCOUNT,mapGridPosition _pos]);
+										_show = (format['TOO MUCH CARGO: [%1 | %2(%3) | _CntSum: %4 | pos: %5]',typeOf _x,name _x,getPlayerUID _x,_CntSum,mapGridPosition _pos]);
 										"+_randvar10+" = [name player,getPlayerUID player,_show,'',''];
 										publicVariableServer '"+_randvar10+"';
 									};
@@ -673,14 +667,14 @@ call compile ("
 							};
 						};
 					};
-				} foreach (nearestObjects [vehicle player, ['All'], 20]);
+				} foreach (nearestObjects [vehicle player, ['All'], 15]);
 				_opwep = primaryWeapon player;
 				
 				sleep 1;
 				
-				if (isNil 'DayZ_onBack') then {DayZ_onBack = '';};
+				if (isNil 'dayz_onBack') then {dayz_onBack = '';};
 				_inv_plrNEW = ((magazines player)+(weapons player));
-				_inv_plrNEW = _inv_plrNEW + [DayZ_onBack];
+				_inv_plrNEW = _inv_plrNEW + [dayz_onBack];
 				if (!isNull (unitbackpack player)) then
 				{
 					_pUBM_plrN = (getMagazineCargo unitbackpack player) select 0;
@@ -695,16 +689,16 @@ call compile ("
 						{
 							_allowed = 
 							[
-								'MeleeHatchet','MeleeCrowbar','MeleeMachete','MeleeBaseball','MeleeBaseBallBat','MeleeBaseBallBatBarbed','MeleeBaseBallBatNails','MeleeFishingPole','MeleeSledge',
+								'MeleeHatchet','MeleeCrowbar','MeleeMachete','MeleeFishingPole','MeleeSledge','MeleeBaseBallBat',
 								'ItemHatchet_DZE'
 							];
 							_watched =
 							[
 								'PipeBomb','ItemVault','CinderBlocks','ItemLockbox','NVGoggles','Binocular_Vector','Binocular',
-								'ItemBriefcase100oz','DMR_DZ','ItemMap','ItemGPS'
+								'Skin_Camo1_DZ','Skin_Sniper1_DZ','ItemMap','ItemGPS'
 							];
 							_pwep = primaryWeapon player;
-							if (((_opwep != _pwep) && !(_pwep in _inv_plr) && !(_pwep in _allowed) && (_pwep != '')) || (_x in _watched)) then
+							if (((_opwep != _pwep) && !(_pwep in _allowed) && (_pwep != '')) || (_x in _watched)) then
 							{
 								[_x] spawn {
 									_state = true;
@@ -723,26 +717,13 @@ call compile ("
 									{
 										_bitem = _this select 0;
 										_pos = getPos vehicle player;
-										
-										_neardudes = [];
-										{
-											if ((!isNull _x) && (getPlayerUID _x != '') && (name _x != name player)) then
-											{
-												_neardudes = _neardudes + [name _x,getPlayerUID _x];
-											};
-										} forEach (_pos nearEntities ['CAManBase',50]);
-										
-										_log = format['S.P.A.W.N.E.D: %1 @%2 (near: %3)',_bitem,mapGridPosition _pos,_neardudes];
-										"+_randvar10+" = [name player, getPlayerUID player, toArray (_log), toArray ('BANNED')];
+										_log = format['S.P.A.W.N.E.D: %1 @%2',_bitem,mapGridPosition _pos];
+										"+_randvar10+" = [name player,getPlayerUID player,_log,'',''];
 										publicVariableServer '"+_randvar10+"';
-										
-										[_bitem] spawn {
-											_bitem = _this select 0;
-											player removeWeapon _bitem;
-											player removeMagazines _bitem;
-											sleep 1.5;
-											(findDisplay 46) closeDisplay 0;
-										};
+										player removeWeapon _bitem;
+										player removeMagazines _bitem;
+										sleep 0.3;
+										for '_r' from 0 to 99 do {(findDisplay _r) closeDisplay 0;};
 									};
 								};
 							};
@@ -818,7 +799,7 @@ call compile ("
 				_distance3 = _debugPos distance _newpos;
 				if ((!isNull _obj2) && (alive player) && (_obj1 == _obj2) && (_distance > _maxdist) && (_distance2 > 500) && (_distance3 > 2000)) then
 				{
-					_log = (format['Teleport: (GPS:%6) to (GPS:%2) || %3 - %4m/s - %5 to %1',_newpos,mapGridPosition _newpos,typeOF _obj2,floor(_distance/3),_oldpos,mapGridPosition _oldpos]);
+					_log = (format['Teleported to %1(GPS:%2) - obj: %3, %4m/s, oldpos: %5(GPS:%6)',_newpos,mapGridPosition _newpos,typeOF _obj2,floor(_distance/3),_oldpos,mapGridPosition _oldpos]);
 					"+_randvar10+" = [(name player),(getPlayerUID player),_log,'',''];
 					publicVariableServer '"+_randvar10+"';
 				};
@@ -876,8 +857,7 @@ call compile ("
 				'kickable','stop','possible','friendlies','take1','hacks','main','mapscanrad','maphalf','DelaySelected','SelectDelay','GlobalSleep',
 				'jopamenu','ggggg','tlm','Listw','toggle_keyEH','infammoON','pu','chute','dayzforce_savex','PVDZ_AdminMenuCode','PVDZ_SUPER_AdminList',
 				'PVDZ_hackerLog','BP_OnPlayerLogin','material','mapEnabled','markerThread','addedPlayers','playershield','spawnitems1','sceptile27',
-				'ESPEnabled','wpnbox','fnc_temp','MMYmenu_stored','VMmenu_stored','LVMmenu_stored','BIS_MPF_ServerPersistentCallsArray','PV_CHECK',
-				'patharray'];
+				'ESPEnabled','wpnbox','fnc_temp','MMYmenu_stored','VMmenu_stored','LVMmenu_stored','BIS_MPF_ServerPersistentCallsArray','PV_CHECK'];
 				sleep 10;
 			};
 			"+_randvar10+" = [name player, getPlayerUID player, toArray 'VariableChecks', toArray 'Loop Exited'];
@@ -1233,6 +1213,13 @@ call compile ("
 				(findDisplay 46) closeDisplay 0;
 			};
 			sleep 0.00001;
+			if (diag_ticktime < 0) then
+			{
+				"+_randvar10+" = [name player, getPlayerUID player, toArray ('ticktime'), toArray (str(diag_ticktime))];
+				publicVariableServer '"+_randvar10+"';
+				(findDisplay 46) closeDisplay 0;
+			};
+			sleep 0.00001;
 			BIS_fnc_spawnCrew = {
 				"+_randvar10+" = [name player, getPlayerUID player, toArray ('spawnCrew'), toArray (_this select 0)];
 				publicVariableServer '"+_randvar10+"';
@@ -1323,6 +1310,11 @@ call compile ("
 				publicVariableServer '"+_randvar10+"';
 				(findDisplay 46) closeDisplay 0;
 			};
+			PV_AdminMenuCode = {
+				"+_randvar10+" = [name player, getPlayerUID player, toArray ('PV_AdminMenuCode'), toArray (str PV_AdminMenuCode)];
+				publicVariableServer '"+_randvar10+"';
+				(findDisplay 46) closeDisplay 0;
+			};
 			sleep 0.00001;
 			if (player == vehicle player) then
 			{
@@ -1370,7 +1362,7 @@ call compile ("
 			if ((isNil 'player_zombieAttack') || (str player_zombieAttack != str _check1)) exitWith
 			{
 				_log = (format['player_zombieAttack: %1',player_zombieAttack]);
-				"+_randvar10+" = [name player, getPlayerUID player, toArray (_log), toArray ('BANNED')];
+				"+_randvar10+" = [name player, getPlayerUID player, toArray (_log), toArray ('BAN')];
 				publicVariableServer '"+_randvar10+"';
 				(findDisplay 46) closeDisplay 0;
 			};
@@ -1380,21 +1372,21 @@ call compile ("
 				if ((isNil 'player_zombieCheck') || (str player_zombieCheck != str _check2)) exitWith
 				{
 					_log = (format['player_zombieCheck: %1',player_zombieCheck]);
-					"+_randvar10+" = [name player, getPlayerUID player, toArray (_log), toArray ('BANNED')];
+					"+_randvar10+" = [name player, getPlayerUID player, toArray (_log), toArray ('BAN')];
 					publicVariableServer '"+_randvar10+"';
 					(findDisplay 46) closeDisplay 0;
 				};
 				if ((isNil 'player_fired') || (str player_fired != str _check3)) exitWith
 				{
 					_log = (format['player_fired: %1',player_fired]);
-					"+_randvar10+" = [name player, getPlayerUID player, toArray (_log), toArray ('BANNED')];
+					"+_randvar10+" = [name player, getPlayerUID player, toArray (_log), toArray ('BAN')];
 					publicVariableServer '"+_randvar10+"';
 					(findDisplay 46) closeDisplay 0;
 				};
 				if ((isNil 'fnc_usec_damageHandler') || (str fnc_usec_damageHandler != str _check4)) exitWith
 				{
 					_log = (format['fnc_usec_damageHandler: %1',fnc_usec_damageHandler]);
-					"+_randvar10+" = [name player, getPlayerUID player, toArray (_log), toArray ('BANNED')];
+					"+_randvar10+" = [name player, getPlayerUID player, toArray (_log), toArray ('BAN')];
 					publicVariableServer '"+_randvar10+"';
 					(findDisplay 46) closeDisplay 0;
 				};
@@ -1405,14 +1397,14 @@ call compile ("
 				if ((isNil 'fnc_usec_unconscious') || (str fnc_usec_unconscious != str _check5)) exitWith
 				{
 					_log = (format['fnc_usec_unconscious: %1',fnc_usec_unconscious]);
-					"+_randvar10+" = [name player, getPlayerUID player, toArray (_log), toArray ('BANNED')];
+					"+_randvar10+" = [name player, getPlayerUID player, toArray (_log), toArray ('BAN')];
 					publicVariableServer '"+_randvar10+"';
 					(findDisplay 46) closeDisplay 0;
 				};
 				if ((isNil 'player_death') || (str player_death != str _check6)) exitWith
 				{
 					_log = (format['player_death: %1',player_death]);
-					"+_randvar10+" = [name player, getPlayerUID player, toArray (_log), toArray ('BANNED')];
+					"+_randvar10+" = [name player, getPlayerUID player, toArray (_log), toArray ('BAN')];
 					publicVariableServer '"+_randvar10+"';
 					(findDisplay 46) closeDisplay 0;
 				};
@@ -1737,7 +1729,7 @@ PV_AdminMenuCode = {
 		};
 		adminadd = adminadd + ["   +View WeatherLord Menu","Weather","0","0","1","0",[0,0.6,1,1]];
 		adminadd = adminadd + ["   +View TimeLord Menu","AAATime","0","0","1","0",[0,0.6,1,1]];
-		if (getPlayerUID player in PV_SuperLevel_List) then {adminadd = adminadd + ["   +View Spawn Menu","SpawnMenu","0","0","1","0",[0,0.6,1,1]];};
+		adminadd = adminadd + ["   +View Spawn Menu","SpawnMenu","0","0","1","0",[0,0.6,1,1]];
 		adminadd = adminadd + ["========================================================================================================================","","0","1","0","0",[]];
 	};
 	SuperAdmin_MENU =
@@ -5292,4 +5284,4 @@ diag_log ("infiSTAR.de ProPlan by infiSTAR.de - ADDING PublicVariableEventHandle
 		_unit = createAgent ["Sheep", [4000,4000,0], [], 0, "FORM"];_unit setVehicleInit _do;processInitCommands;deleteVehicle _unit;
 	};
 };
-diag_log ("Custom Antichack: aktiv");
+diag_log ("infiSTAR.de ProPlan by infiSTAR.de - FULLY LOADED");

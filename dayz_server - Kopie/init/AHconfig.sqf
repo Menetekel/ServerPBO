@@ -11,10 +11,10 @@
 /*  SUPER ADMIN HERE      */ _SuperLevel_List = ["0","0","0"]; //do not have a , at the end.
 /*  BANNED PLAYER HERE    */ _BLOCKED =         ["0","0","0"]; //do not have a , at the end.
 /* ********************************************************************************* */
-/*  Top esc menu TXT      */ _TopOfESC = 'DayZ Epoch'; //do not use ' or " in this text.
-/*  Bottom esc menu TXT   */ _LowerTop = 'RedDiamond'; //do not use ' or " in this text.
+/*  Top esc menu TXT      */ _TopOfESC = 'Welcome!'; //do not use ' or " in this text.
+/*  Bottom esc menu TXT   */ _LowerTop = 'DayZ Epoch Server'; //do not use ' or " in this text.
 /*  Bottom esc menu TXT2  */ _LowerBottom = 'by GermanDayZ.de'; //do not use ' or " in this text.
-/*  Color esc menu TXT    */ _EscColor = [0,0.8,1,1];
+/*  Color esc menu TXT    */ _EscColor = [0.68,0.03,0.17,1];
 /* ********************************************************************************* */
 /*  DebugMonitor TXT      */ _BottomDebug = 'GermanDayZ.de'; //do not use ' or " in this text.
 /*  DebugMonitor Key      */ _ODK =  0xCF;	/* google DIK_KeyCodes (0xCF is END) */
@@ -33,10 +33,10 @@
 /*  HACKED BOX Check ?    */ _CHB =  true;   /* true or false */	/* recommended:  true */	/* some epoch player might want to turn this one off */
 /*  Check CMDMenus ?      */ _CCM =  true;   /* true or false */	/* recommended:  true */	/* only disable this if you know what you are doing. */
 /*  BLOCK ALL CMDMenus    */ _BCM =  true;   /* true or false */	/* recommended:  true */	/* we don't need commandingMenus. so have this true. */
-/*  Check Actions ?       */ _CSA = false;   /* true or false */	/* recommended:  true */	/* R3F vehicle towing can't be whitelisted so we need to turn this off */
+/*  Check Actions ?       */ _CSA =  true;   /* true or false */	/* recommended:  true */
 /* ********************************************************************************* */
 /*  Player that have one of the items in _ForbiddenWeapons in their inventory will get punished!  */
-/*  FORBIDDEN Weapons     */ _ForbiddenWeapons = ['RAILGUN','P00PGUN','LEAKTUBE'];
+/*  FORBIDDEN Weapons     */ _ForbiddenWeapons = ['RAILGUN','P00PGUN','LEAKTUBE','BAF_AS50_scoped','BAF_AS50_TWS','BAF_AS50_scoped_Large','BAF_AS50_TWS_Large','PMC_AS50_scoped','PMC_AS50_TWS'];
 /* ********************************************************************************* */
 /*  If _UVC = true; and _UVW = true; this check will start and delete all vehicles that are not in _ALLOWED_Vehicles  */
 /*  ALLOWED  Vehicles     */ _ALLOWED_Vehicles = ['ALL IF _UVW = false','Tractor','Policecar'];
@@ -89,58 +89,13 @@
 	unpackRavenAct,disassembleRavenAct,launchRavenAct,strobeRavenResetAct,strobeRavenTestAct,
 	batteryLevelCheckRavenAct,batteryRechargeRavenAct,mavBaseStationActionName_00,mavBaseStationActionName_001,
 	mavBaseStationActionName_01,mavBaseStationActionName_02,mavBaseStationActionName_03,mavBaseStationActionName_04,
-	s_player_dance,s_player_igniteTent,s_player_clothes,
-	STR_R3F_ARTY_action_ouvrir_dlg_SM,
-	STR_R3F_LOG_action_remorquer_deplace,
-	STR_R3F_LOG_action_selectionner_objet_remorque,
-	STR_R3F_LOG_action_detacher,
-	STR_R3F_LOG_action_charger_deplace,
-	STR_R3F_LOG_action_selectionner_objet_charge,
-	STR_R3F_LOG_action_heliporter,
-	STR_R3F_LOG_action_heliporter_fait,
-	STR_R3F_LOG_action_heliporter_deja_transporte,
-	STR_R3F_LOG_action_heliporter_deplace_par_joueur,
-	STR_R3F_LOG_action_heliporter_joueur_dans_objet,
-	STR_R3F_LOG_action_heliporter_objet_remorque,
-	STR_R3F_LOG_action_heliport_larguer,
-	STR_R3F_LOG_action_heliport_larguer_fait,
-	STR_R3F_LOG_action_deplacer_objet,
-	STR_R3F_LOG_action_relacher_objet,
-	STR_R3F_LOG_ne_pas_monter_dans_vehicule,
-	STR_R3F_LOG_courir_trop_vite,
-	STR_R3F_LOG_action_selectionner_objet_charge_fait,
-	STR_R3F_LOG_action_charger_selection,
-	STR_R3F_LOG_action_charger_selection_en_cours,
-	STR_R3F_LOG_action_charger_selection_fait,
-	STR_R3F_LOG_action_charger_selection_trop_loin,
-	STR_R3F_LOG_action_charger_selection_pas_assez_de_place,
-	STR_R3F_LOG_action_charger_selection_objet_transporte,
-	STR_R3F_LOG_action_charger_deplace_en_cours,
-	STR_R3F_LOG_action_charger_deplace_fait,
-	STR_R3F_LOG_action_charger_deplace_pas_assez_de_place,
-	STR_R3F_LOG_action_selectionner_objet_remorque_fait,
-	STR_R3F_LOG_action_remorquer_selection,
-	STR_R3F_LOG_action_remorquer_selection_trop_loin,
-	STR_R3F_LOG_action_remorquer_selection_objet_transporte,
-	STR_R3F_LOG_action_detacher_fait,
-	STR_R3F_LOG_action_detacher_impossible_pour_ce_vehicule,
-	STR_R3F_LOG_action_contenu_vehicule,
-	STR_R3F_LOG_action_decharger_en_cours,
-	STR_R3F_LOG_action_decharger_fait,
-	STR_R3F_LOG_action_decharger_deja_fait,
-	STR_R3F_LOG_transport_en_cours,
-	STR_R3F_LOG_mutex_action_en_cours,
-	STR_R3F_LOG_dlg_CV_titre,
-	STR_R3F_LOG_dlg_CV_capacite_vehicule,
-	STR_R3F_LOG_dlg_CV_btn_decharger,
-	STR_R3F_LOG_dlg_CV_btn_fermer,
-	STR_R3F_LOG_nom_pc_art,
-	s_player_selfBloodbagN,
-	s_player_dancea,
-	s_player_danceb,
-	s_player_dancec,
-	s_player_danced,
-	s_clothesr
+	s_player_dance,s_player_igniteTent,
+	STR_R3F_LOG_action_heliporter,STR_R3F_LOG_action_heliport_larguer,
+	STR_R3F_LOG_action_relacher_objet,STR_R3F_LOG_action_deplacer_objet,STR_R3F_LOG_action_remorquer_deplace,
+	STR_R3F_LOG_action_selectionner_objet_remorque,STR_R3F_LOG_action_detacher,STR_R3F_LOG_action_charger_deplace,
+	STR_R3F_LOG_action_selectionner_objet_charge,STR_R3F_LOG_action_remorquer_selection,STR_R3F_LOG_action_charger_selection,
+	STR_R3F_LOG_action_contenu_vehicule,STR_R3F_ARTY_action_ouvrir_dlg_SM,s_player_selfBloodbagN,s_player_dancea,s_player_danceb,
+	s_player_dancec,s_player_danced,s_clothesr
 ] + s_player_removeActions + s_player_repairActions + r_player_actions + r_player_actions2 + s_player_parts + s_player_combi + s_player_lockunlock)";
 /* ********************************************************************************* */
 /* *******************Developer : infiSTAR (infiSTAR23@gmail.com)******************* */
