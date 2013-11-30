@@ -112,7 +112,7 @@ _key call server_hiveWrite;
 	PVDZE_serverObjectMonitor set [count PVDZE_serverObjectMonitor,_object];
 
 	_object call fnc_veh_ResetEH;
-     [_object, _class] call fnc_veh_Ammo; //starfish
+//     [_object, _class] call fnc_veh_Ammo; //starfish
 //if (_object isKindOf "AllVehicles") then {
 //        _object setVehicleAmmo 0;
 //         };
