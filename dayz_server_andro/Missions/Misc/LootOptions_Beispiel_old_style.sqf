@@ -6,14 +6,12 @@ clearMagazineCargoGlobal _crate;
 x=floor(random 5);    //Random Auswahl zwischen 0-4
 
 if (x == 0) then {
+
 				_crate addWeaponCargoGlobal ["ItemToolbox", 2];
-				_crate addWeaponCargoGlobal ["ItemKeyKit", 2];
-				_crate addWeaponCargoGlobal ["M9SD", 2];
-				_crate addMagazineCargoGlobal ["ItemMatchbox_DZE", 2];
-				_crate addMagazineCargoGlobal ["ItemGenerator", 5];
-				_crate addMagazineCargoGlobal ["PartGeneric", 1];
-				_crate addMagazineCargoGlobal ["ItemGenerator", 5];
-				_crate addMagazineCargoGlobal ["ItemGenerator", 5];
+				_crate addMagazineCargoGlobal ["Skin_Camo1_DZ", 1];
+				_crate addMagazineCargoGlobal ["17Rnd_9x19_glock17", 5];
+				_crate addWeaponCargoGlobal ["M14_EP1", 2];
+				_crate addMagazineCargoGlobal ["NVGoggles", 1];
 			};
 
 if (x == 1) then {

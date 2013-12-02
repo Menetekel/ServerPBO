@@ -47,19 +47,19 @@ if(_outcome == "PASS") then {
 	
 // Custom Configs
 if(isnil "MaxVehicleLimit") then {
-	MaxVehicleLimit = 300; //default 50
+	MaxVehicleLimit = 50;
 };
 if(isnil "MaxHeliCrashes") then {
-	MaxHeliCrashes = 5; //default 5
+	MaxHeliCrashes = 5;
 };
 if(isnil "MaxDynamicDebris") then {
-	MaxDynamicDebris = 100; //default 100
+	MaxDynamicDebris = 100;
 };
 if(isnil "MaxAmmoBoxes") then {
-	MaxAmmoBoxes = 5; //default 5
+	MaxAmmoBoxes = 3;
 };
 if(isnil "MaxMineVeins") then {
-	MaxMineVeins = 50; //default 50
+	MaxMineVeins = 50;
 };
 // Custon Configs End
 
@@ -269,7 +269,7 @@ if (isServer and isNil "sm_done") then {
 					//_object setvelocity [0,0,1];
 					_object call fnc_veh_ResetEH;	
 					
-					//[_object, _class] call fnc_veh_ammo; //starfish
+					[_object, _class] call fnc_veh_ammo; //starfish
 					
 					if(_ownerID != "0" and !(_object isKindOf "Bicycle")) then {
 						_object setvehiclelock "locked";
