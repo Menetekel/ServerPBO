@@ -21,9 +21,13 @@ _hummer1 = createVehicle ["UAZ_Unarmed_UN_EP1",[(_coords select 0) - 30, (_coord
 _hummer2 = createVehicle ["SUV_DZ",[(_coords select 0) + 10, (_coords select 1) + 5,0],[], 0, "CAN_COLLIDE"];
 
 _c130wreck setVariable ["Sarge",1,true];
+_c130wreck setvehiclelock "locked";
 _hummer setVariable ["Sarge",1,true];
+_hummer setvehiclelock "locked";
 _hummer1 setVariable ["Sarge",1,true];
+_hummer1 setvehiclelock "locked";
 _hummer2 setVariable ["Sarge",1,true];
+_hummer2 setvehiclelock "locked";
 
 _crate = createVehicle ["USVehicleBox",[(_coords select 0) - 10, _coords select 1,0],[], 0, "CAN_COLLIDE"];
 [_crate] execVM "\z\addons\dayz_server\missions\misc\fillBoxesM.sqf";
@@ -42,7 +46,7 @@ _aispawn = [[(_coords select 0) + 20, _coords select 1,0],40,4,4,1] execVM "\z\a
 sleep 5;
 _aispawn = [[(_coords select 0) + 30, _coords select 1,0],40,4,4,1] execVM "\z\addons\dayz_server\missions\add_unit_server.sqf";//AI Guards
 
-waitUntil{{isPlayer _x && _x distance _c130wreck < 5 } count playableunits > 0}; 
+waitUntil{{isPlayer _x && _x distance _c130wreck < 25 } count playableunits > 0}; 
 
 [] execVM "germandayz\missions\remmarkers.sqf";
 MissionGo = 0;
@@ -50,10 +54,14 @@ Ccoords = 0;
 publicVariable "Ccoords";
 
 //Mission accomplished
-[nil,nil,rTitleText,"The crash site has been secured by survivors!", "PLAIN",6] call RE;
-[nil,nil,rGlobalRadio,"The crash site has been secured by survivors!"] call RE;
-[nil,nil,rHINT,"The crash site has been secured by survivors!"] call RE;
-
+[nil,nil,rTitleText,"The crash site has been secured by survivors! The vehicles have been booby trapped - watch out!", "PLAIN",6] call RE;
+[nil,nil,rGlobalRadio,"The crash site has been secured by survivors! The vehicles have been booby trapped - watch out!"] call RE;
+[nil,nil,rHINT,"The crash site has been secured by survivors! The vehicles have been booby trapped - watch out!"] call RE;
+sleep 5;
+_c130wreck setDamage 1;
+_hummer setDamage 1;
+_hummer1 setDamage 1;
+_hummer2 setDamage 1;
 
 SM1 = 1;
 

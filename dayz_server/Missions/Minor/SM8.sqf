@@ -27,7 +27,7 @@ publicVariable "MCoords";
 
 pbxride = createVehicle ["PBX",_coords select 0,[], 0, "NONE"];
 pbxride setVariable ["Sarge",1,true];
-pbxride setFuel 1;
+pbxride setFuel 0.1;
 
 [_coords select 0,4,1] execVM "\z\addons\dayz_server\missions\add_unit_server6.sqf";//AI Guards
 sleep 3;
@@ -55,7 +55,7 @@ tentloot addMagazineCargoGlobal ["ItemJerryCan",2];
 
 
 
-waitUntil{{isPlayer _x && _x distance tentloot < 10  } count playableunits > 0}; 
+waitUntil{{isPlayer _x && _x distance tentloot < 20  } count playableunits > 0}; 
 
 [] execVM "germandayz\missions\remmarkers75.sqf";
 MissionGoMinor = 0;

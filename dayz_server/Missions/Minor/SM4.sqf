@@ -18,6 +18,7 @@ publicVariable "MCoords";
 
 _chopcrash = createVehicle ["UH60Wreck_DZ",_coords,[], 0, "CAN_COLLIDE"];
 _chopcrash setVariable ["Sarge",1,true];
+_chopcrash setDamage 1;
 
 _crate2 = createVehicle ["USLaunchersBox",[(_coords select 0) - 6, _coords select 1,0],[], 0, "CAN_COLLIDE"];
 [_crate2] execVM "\z\addons\dayz_server\missions\misc\fillBoxesS.sqf";

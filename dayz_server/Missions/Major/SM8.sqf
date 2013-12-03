@@ -32,6 +32,8 @@ c130wreck = createVehicle ["C130J_wreck_EP1",[(_coords select 0) + 30, (_coords 
 box = createVehicle ["USVehicleBox",[(_coords select 0) - 10, _coords select 1,0],[], 0, "NONE"];
 box2 = createVehicle ["USVehicleBox",[(_coords select 0) - 10, (_coords select 1) - 10,0],[], 0, "NONE"];
 
+c130wreck setDamage 1;
+
 [BOX] execVM "\z\addons\dayz_server\missions\misc\fillBoxes1.sqf";
 [BOX2] execVM "\z\addons\dayz_server\missions\misc\fillBoxes1.sqf";
 

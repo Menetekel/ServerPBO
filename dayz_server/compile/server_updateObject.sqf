@@ -26,15 +26,17 @@ if ((typeName _objectID != "string") || (typeName _uid != "string")) then
     _uid = "0";
 };
 
-if (_object getVariable "Mission" == 1) exitWith {};
-
 if (!_parachuteWest and !(locked _object)) then {
-	if (_objectID == "0" && _uid == "0") then
+	//if (_objectID == "0" && _uid == "0") then
+	if (_objectID == "0" && _uid == "0" && (vehicle _object getVariable ["Sarge",0] != 1)) then
 	{
 		_object_position = getPosATL _object;
     	_isNotOk = true;
 	};
 };
+//Mission System
+//if (_object getVariable "Mission" == 1) exitWith {};
+if (_object getVariable "Sarge" == 1) exitWith {};
 
 // do not update if buildable and not ok
 if (_isNotOk and _isbuildable) exitWith {  };

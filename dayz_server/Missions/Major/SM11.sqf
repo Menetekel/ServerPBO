@@ -33,7 +33,8 @@ _chopper = ["HMMWV_M998_crows_MK19_DES_EP1","HMMWV_M998_crows_MK19_DES_EP1"] cal
 hueychop = createVehicle [_chopper,_coords,[], 0, "NONE"];
 hueychop setVariable ["Sarge",1,true];
 hueychop setFuel 0;
-hueychop setVehicleAmmo 0.5;
+hueychop setVehicleAmmo 0;
+hueychop setDamage 1;
 
 _aispawn = [_coords,80,6,6,1] execVM "\z\addons\dayz_server\missions\add_unit_server4.sqf";//AI Guards
 sleep 5;

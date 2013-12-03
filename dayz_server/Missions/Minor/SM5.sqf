@@ -7,9 +7,9 @@ WaitUntil {MissionGoMinor == 1};
 _coords =  [getMarkerPos "center",0,4000,10,0,2000,0] call BIS_fnc_findSafePos;
 
 //Mission accomplished
-[nil,nil,rTitleText,"A Humvee has crashed! Check your map for the location!", "PLAIN",10] call RE;
-[nil,nil,rGlobalRadio,"A Humvee has crashed! Check your map for the location!"] call RE;
-[nil,nil,rHINT,"A Humvee has crashed! Check your map for the location!"] call RE;
+[nil,nil,rTitleText,"A team of noobs has crashed a HMMWV! Check your map for the location!", "PLAIN",10] call RE;
+[nil,nil,rGlobalRadio,"A team of noobs has crashed a HMMWV! Check your map for the location!"] call RE;
+[nil,nil,rHINT,"A team of noobs has crashed a HMMWV! Check your map for the location!"] call RE;
 
 
 MCoords = _coords;
@@ -18,6 +18,7 @@ publicVariable "MCoords";
 
 _humveecrash = createVehicle ["HMMWVwreck",_coords,[], 0, "CAN_COLLIDE"];
 _humveecrash setVariable ["Sarge",1,true];
+_humveecrash setVehicleLock "LOCKED";
 
 _crate3 = createVehicle ["RULaunchersBox",[(_coords select 0) - 14, _coords select 1,0],[], 0, "CAN_COLLIDE"];
 [_crate3] execVM "\z\addons\dayz_server\missions\misc\fillBoxesH.sqf";

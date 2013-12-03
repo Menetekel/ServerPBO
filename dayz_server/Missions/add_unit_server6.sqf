@@ -72,7 +72,7 @@ private ["_aiunit","_xpos","_ypos","_unitpos","_aiGroup","_levelnum","_numunits"
                 switch (_rndLOut) do
                 {
                   case 0: {["M249_DZ","200Rnd_556x45_M249","glock17_EP1","17Rnd_9x19_glock17"]};
-                  case 1: {["MG36_DZ","100Rnd_556x45_BetaCMag","Colt1911","7Rnd_45ACP_1911"]};
+                  case 1: {["AK_107_PSO","30Rnd_545x39_AK","Colt1911","7Rnd_45ACP_1911"]};
                   case 2: {["RPK_74_DZ","75Rnd_545x39_RPK","M9","15Rnd_9x19_M9"]};
                 };
             };
@@ -84,10 +84,10 @@ private ["_aiunit","_xpos","_ypos","_unitpos","_aiGroup","_levelnum","_numunits"
                 _ailoadout=
                 switch (_rndLOut) do
                 {
-                  case 0: {["SVD_CAMO","10Rnd_762x54_SVD","Sa61_EP1","20Rnd_B_765x17_Ball"]};
-                  case 1: {["M24","5Rnd_762x51_M24","Sa61_EP1","20Rnd_B_765x17_Ball"]};
-                  case 2: {["M40A3","5Rnd_762x51_M24","Sa61_EP1","20Rnd_B_765x17_Ball"]};
-                  case 3: {["VSS_vintorez_DZ","20Rnd_9x39_SP5_VSS","Sa61_EP1","20Rnd_B_765x17_Ball"]};
+                  case 0: {["LeeEnfield","10x_303","glock17_EP1","17Rnd_9x19_glock17"]};
+                  case 1: {["RPK_74","75Rnd_545x39_RPK","M9","15Rnd_9x19_M9"]};
+                  case 2: {["AK_47_M","30Rnd_762x39_AK47","MakarovSD","8Rnd_9x18_Makarov"]};
+                  case 3: {["M4SPR","30Rnd_556x45_Stanag","MakarovSD","8Rnd_9x18_Makarov"]};
                 };
             };
         };
@@ -141,12 +141,12 @@ private ["_aiunit","_xpos","_ypos","_unitpos","_aiGroup","_levelnum","_numunits"
         _aiunit addMagazine "ItemBandage";
         };
         //set skills
-        _aiunit setSkill ["aimingAccuracy",0.6];
-        _aiunit setSkill ["aimingShake",0.7];
-        _aiunit setSkill ["aimingSpeed",0.8];
+        _aiunit setSkill ["aimingAccuracy",0.8];
+        _aiunit setSkill ["aimingShake",0.9];
+        _aiunit setSkill ["aimingSpeed",0.9];
         _aiunit setSkill ["endurance",0.9];
-        _aiunit setSkill ["spotDistance",0.8];
-        _aiunit setSkill ["spotTime",0.7];
+        _aiunit setSkill ["spotDistance",0.9];
+        _aiunit setSkill ["spotTime",0.9];
         _aiunit setSkill ["courage",0.9];
         _aiunit setSkill ["reloadSpeed",1];
         _aiunit setSkill ["commanding",1];

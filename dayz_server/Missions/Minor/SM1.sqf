@@ -18,6 +18,7 @@ publicVariable "MCoords";
 
 _hummer = createVehicle ["UAZ_Unarmed_UN_EP1",[(_coords select 0) + 10, (_coords select 1) - 5,0],[], 0, "CAN_COLLIDE"];
 _hummer setVariable ["Sarge",1,true];
+_hummer setVehicleLock "LOCKED";
 
 [_coords,80,4,2,1] execVM "\z\addons\dayz_server\missions\add_unit_server2.sqf";//AI Guards
 sleep 5;
@@ -32,6 +33,7 @@ waitUntil{({alive _x} count (units SniperTeam)) < 1};
 [nil,nil,rTitleText,"The hunting party has been wiped out!", "PLAIN",6] call RE;
 [nil,nil,rGlobalRadio,"The hunting party has been wiped out!"] call RE;
 [nil,nil,rHINT,"The hunting party has been wiped out!"] call RE;
+_hummer setDamage 1;
 
 [] execVM "germandayz\missions\remmarkers75.sqf";
 MissionGoMinor = 0;

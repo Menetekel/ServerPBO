@@ -27,9 +27,13 @@ _baserunover setVariable ["Sarge",1,true];
 _baserunover2 setVariable ["Sarge",1,true];
 _baserunover3 setVariable ["Sarge",1,true];
 _hummer setVariable ["Sarge",1,true];
+_hummer setVehicleLock "LOCKED";
 _hummer1 setVariable ["Sarge",1,true];
+_hummer1 setVehicleLock "LOCKED";
 _hummer2 setVariable ["Sarge",1,true];
+_hummer2 setVehicleLock "LOCKED";
 _hummer3 setVariable ["MSarge",1,true];
+_hummer3 setVehicleLock "LOCKED";
 
 _crate = createVehicle ["USVehicleBox",[(_coords select 0) - 3, _coords select 1,0],[], 0, "CAN_COLLIDE"];
 [_crate] execVM "\z\addons\dayz_server\missions\misc\fillBoxes.sqf";
@@ -48,6 +52,10 @@ waitUntil{{isPlayer _x && _x distance _baserunover < 10  } count playableunits >
 [nil,nil,rTitleText,"The stash house is under survivor control!", "PLAIN",6] call RE;
 [nil,nil,rGlobalRadio,"The stash house is under survivor control!"] call RE;
 [nil,nil,rHINT,"The stash house is under survivor control!"] call RE;
+_hummer setDamage 1;
+_hummer1 setDamage 1;
+_hummer2 setDamage 1;
+_hummer3 setDamage 1;
 
 [] execVM "germandayz\missions\remmarkers75.sqf";
 MissionGoMinor = 0;

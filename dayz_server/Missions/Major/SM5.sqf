@@ -19,9 +19,13 @@ publicVariable "Ccoords";
 
 _uralcrash = createVehicle ["UralWreck",_coords,[], 0, "CAN_COLLIDE"];
 _uralcrash setVariable ["Sarge",1,true];
+_uralcrash setVehicleLock "LOCKED";
 
 _hummer = createVehicle ["UAZ_Unarmed_UN_EP1",[(_coords select 0) + 20, (_coords select 1) - 5,0],[], 0, "CAN_COLLIDE"];
 _hummer1 = createVehicle ["HMMWV_DZ",[(_coords select 0) + 30, (_coords select 1) - 5,0],[], 0, "CAN_COLLIDE"];
+
+_hummer setVehicleLock "LOCKED";
+_hummer1 setVehicleLock "LOCKED";
 
 _hummer setVariable ["Sarge",1,true];
 _hummer1 setVariable ["Sarge",1,true];

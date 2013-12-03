@@ -7,9 +7,9 @@ WaitUntil {MissionGoMinor == 1};
 _coords =  [getMarkerPos "center",0,5500,10,0,20,0] call BIS_fnc_findSafePos;
 
 //Mission start
-[nil,nil,rTitleText,"A group of bandits have taken over a Medical Outpost! Check your map for the location!", "PLAIN",10] call RE;
-[nil,nil,rGlobalRadio,"A group of bandits have taken over a Medical Outpost! Check your map for the location!"] call RE;
-[nil,nil,rHINT,"A group of bandits have taken over a Medical Outpost! Check your map for the location!"] call RE;
+[nil,nil,rTitleText,"Team GermanDayZ.de has taken over an Outpost! Check your map for the location!", "PLAIN",10] call RE;
+[nil,nil,rGlobalRadio,"Team GermanDayZ.de has taken over an Outpost! Check your map for the location!"] call RE;
+[nil,nil,rHINT,"Team GermanDayZ.de has taken over an Outpost! Check your map for the location!"] call RE;
 
 
 MCoords = _coords;
@@ -55,9 +55,9 @@ sleep 3;
 waitUntil{{isPlayer _x && _x distance _baserunover < 5  } count playableunits > 0}; 
 
 //Mission accomplished
-[nil,nil,rTitleText,"The Medical Outpost is under survivor control!", "PLAIN",6] call RE;
-[nil,nil,rGlobalRadio,"The hunting party has been wiped out!"] call RE;
-[nil,nil,rHINT,"The hunting party has been wiped out!"] call RE;
+[nil,nil,rTitleText,"The outpost is under survivor control!", "PLAIN",6] call RE;
+[nil,nil,rGlobalRadio,"The outpost is under survivor control!"] call RE;
+[nil,nil,rHINT,"The outpost is under survivor control!"] call RE;
 
 
 [] execVM "germandayz\missions\remmarkers75.sqf";

@@ -29,7 +29,7 @@ publicVariable "Ccoords";
 [] execVM "germandayz\missions\addmarkers.sqf";
 
 box = createVehicle ["USLaunchersBox",[(_coords select 0) - 3, (_coords select 1) - 3,0],[], 0, "NONE"];
-[BOX] execVM "\z\addons\dayz_server\missions\misc\fillLaunchBoxes.sqf";
+[BOX] execVM "\z\addons\dayz_server\missions\misc\fillConstructionMajor.sqf";
 
 _aispawn = [_coords,80,6,6,1] execVM "\z\addons\dayz_server\missions\add_unit_server4.sqf";//AI Guards
 sleep 5;

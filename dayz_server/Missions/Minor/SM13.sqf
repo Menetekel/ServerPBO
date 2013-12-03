@@ -7,9 +7,10 @@ WaitUntil {MissionGoMinor == 1};
 _coords = [getMarkerPos "center",0,7000,2,0,2000,0] call BIS_fnc_findSafePos;
 
 //Mission start
-[nil,nil,rTitleText,"A psychotic axe murderer has escaped from the hospital!", "PLAIN",6] call RE;
-[nil,nil,rGlobalRadio,"A psychotic axe murderer has escaped from the hospital!"] call RE;
-[nil,nil,rHINT,"A psychotic axe murderer has escaped from the hospital!"] call RE;
+[nil,nil,rTitleText,"A psychotic axe murderer called -Adebar- has escaped from the hospital!", "WHITE IN",6] call RE;
+[nil,nil,rGlobalRadio,"A psychotic axe murderer called -Adebar- has escaped from the hospital!"] call RE;
+[nil,nil,rHINT,"A psychotic axe murderer called -Adebar- has escaped from the hospital!"] call RE;
+[nil,nil,rTitleText,"A psychotic axe murderer called -Adebar- has escaped from the hospital!", "BLACK OUT",6] call RE;
 
 MCoords = _coords;
 publicVariable "MCoords";

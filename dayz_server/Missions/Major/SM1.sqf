@@ -20,8 +20,11 @@ _hummer1 = createVehicle ["UAZ_Unarmed_UN_EP1",[(_coords select 0) + 20, (_coord
 _hummer2 = createVehicle ["SUV_DZ",[(_coords select 0) + 30, (_coords select 1) + 10,10],[], 0, "CAN_COLLIDE"];
 
 _hummer setVariable ["Sarge",1,true];
+_hummer setvehiclelock "LOCKED";
 _hummer1 setVariable ["Sarge",1,true];
+_hummer1 setvehiclelock "LOCKED";
 _hummer2 setVariable ["Sarge",1,true];
+_hummer2 setvehiclelock "LOCKED";
 
 _crate = createVehicle ["USVehicleBox",_coords,[], 0, "CAN_COLLIDE"];
 [_crate] execVM "\z\addons\dayz_server\missions\misc\fillBoxes.sqf";
@@ -43,6 +46,10 @@ waitUntil{{isPlayer _x && _x distance _hummer < 10  } count playableunits > 0};
 [nil,nil,rTitleText,"The weapons cache is under survivor control!", "PLAIN",6] call RE;
 [nil,nil,rGlobalRadio,"The weapons cache is under survivor control!"] call RE;
 [nil,nil,rHINT,"The weapons cache is under survivor control!"] call RE;
+
+_hummer setDamage 1;
+_hummer1 setDamage 1;
+_hummer2 setDamage 1;
 
 [] execVM "germandayz\missions\remmarkers.sqf";
 MissionGo = 0;

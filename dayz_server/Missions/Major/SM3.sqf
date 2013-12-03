@@ -8,9 +8,9 @@ WaitUntil {MissionGo == 1};
 _coords = [getMarkerPos "center",0,5500,50,0,20,0] call BIS_fnc_findSafePos;
 
 //Mission start
-[nil,nil,rTitleText,"Bandits have set up a medical re-supply camp! Check your map for the location!", "PLAIN",10] call RE;
-[nil,nil,rGlobalRadio,"Bandits have set up a medical re-supply camp! Check your map for the location!"] call RE;
-[nil,nil,rHINT,"Bandits have set up a medical re-supply camp! Check your map for the location!"] call RE;
+[nil,nil,rTitleText,"Bandits have set up an Outpost and are gathering building supplies! Check your map for the location!", "PLAIN",10] call RE;
+[nil,nil,rGlobalRadio,"Bandits have set up an Outpost and are gathering building supplies! Check your map for the location!"] call RE;
+[nil,nil,rHINT,"Bandits have set up an Outpost and are gathering building supplies! Check your map for the location!"] call RE;
 
 Ccoords = _coords;
 publicVariable "Ccoords";
@@ -23,6 +23,7 @@ _hummer = createVehicle ["HMMWV_DZ",[(_coords select 0) + 25, (_coords select 1)
 _baserunover2 setVariable ["Sarge",1,true];
 _baserunover setVariable ["Sarge",1,true];
 _hummer setVariable ["Sarge",1,true];
+_hummer setVehicleLock "LOCKED"; 
 
 _crate = createVehicle ["USVehicleBox",[(_coords select 0) + 5, (_coords select 1),0],[], 0, "CAN_COLLIDE"];
 [_crate] execVM "\z\addons\dayz_server\missions\misc\fillBoxesM.sqf";
@@ -42,10 +43,12 @@ _aispawn = [_coords,40,4,3,1] execVM "\z\addons\dayz_server\missions\add_unit_se
 
 waitUntil{{isPlayer _x && _x distance _baserunover < 10  } count playableunits > 0}; 
 
+_hummer setDamage 1; 
+
 //Mission accomplished
-[nil,nil,rTitleText,"Survivors have taken control of the camp and medical supplies.", "PLAIN",6] call RE;
-[nil,nil,rGlobalRadio,"Survivors have taken control of the camp and medical supplies."] call RE;
-[nil,nil,rHINT,"Survivors have taken control of the camp and medical supplies."] call RE;
+[nil,nil,rTitleText,"Survivors have taken control of the camp and the building materials.", "PLAIN",6] call RE;
+[nil,nil,rGlobalRadio,"Survivors have taken control of the camp and the building materials."] call RE;
+[nil,nil,rHINT,"Survivors have taken control of the camp and the building materials."] call RE;
 
 [] execVM "germandayz\missions\remmarkers.sqf";
 MissionGo = 0;

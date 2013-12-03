@@ -32,7 +32,8 @@ _chopper = ["BTR60_TK_EP1","LAV25","LAV25_HQ","LAV25_HQ","LAV25_HQ"] call BIS_fn
 hueychop = createVehicle [_chopper,_coords,[], 0, "NONE"];
 hueychop setVariable ["Sarge",1,true];
 hueychop setFuel 0;
-hueychop setVehicleAmmo 0.5;
+hueychop setVehicleAmmo 0;
+hueychop setDamage 1;
 
 _aispawn = [_coords,80,6,4,1] execVM "\z\addons\dayz_server\missions\add_unit_server4.sqf";//AI Guards
 sleep 5;

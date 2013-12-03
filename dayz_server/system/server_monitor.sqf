@@ -184,6 +184,8 @@ if (isServer and isNil "sm_done") then {
 				_object setVariable ["OEMPos", _pos, true];
 				if ((typeOf _object) in ["Plastic_Pole_EP1_DZ","Land_HBarrier3_DZ","Land_HBarrier1_DZ","MetalPanel_DZ","MetalFloor_DZ","CinderWallDoorSmallLocked_DZ","CinderWallDoorLocked_DZ"]) then {
 					//SKARONATOR GODMODE
+					//_object addEventHandler ["HandleDamage", {false}];
+					//_object enableSimulation false;
 					_object allowDamage false; 
 					diag_log format["SetGod for Obj: %1", _object];
 					//SKARONATOR GODMODE END
