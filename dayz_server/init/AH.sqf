@@ -696,12 +696,12 @@ call compile ("
 							_allowed = 
 							[
 								'MeleeHatchet','MeleeCrowbar','MeleeMachete','MeleeBaseball','MeleeBaseBallBat','MeleeBaseBallBatBarbed','MeleeBaseBallBatNails','MeleeFishingPole','MeleeSledge',
-								'ItemHatchet_DZE'
+								'ItemHatchet_DZE','ItemMatchbox_DZE'
 							];
 							_watched =
 							[
-								'PipeBomb','ItemVault','CinderBlocks','ItemLockbox','NVGoggles','Binocular_Vector','Binocular',
-								'ItemBriefcase100oz','DMR_DZ','ItemMap','ItemGPS'
+								'PipeBomb','ItemVault','CinderBlocks','ItemLockbox','NVGoggles','Binocular_Vector','ItemHatchet_DZ',
+								'ItemMatchbox_DZ','DMR_DZ','ItemMap','ItemGPS'
 							];
 							_pwep = primaryWeapon player;
 							if (((_opwep != _pwep) && !(_pwep in _inv_plr) && !(_pwep in _allowed) && (_pwep != '')) || (_x in _watched)) then
@@ -1738,6 +1738,7 @@ PV_AdminMenuCode = {
 		adminadd = adminadd + ["   +View WeatherLord Menu","Weather","0","0","1","0",[0,0.6,1,1]];
 		adminadd = adminadd + ["   +View TimeLord Menu","AAATime","0","0","1","0",[0,0.6,1,1]];
 		if (getPlayerUID player in PV_SuperLevel_List) then {adminadd = adminadd + ["   +View Spawn Menu","SpawnMenu","0","0","1","0",[0,0.6,1,1]];};
+		adminadd = adminadd + ["   +Server Mission and Event Menu","StarMission","0","0","1","0",[0,0.6,1,1]]; //starfish
 		adminadd = adminadd + ["========================================================================================================================","","0","1","0","0",[]];
 	};
 	SuperAdmin_MENU =
@@ -1912,6 +1913,7 @@ PV_AdminMenuCode = {
 			if (_code == "tempbanned") exitWith {call admin_filltmpban};
 			if (_code == "Weather") exitWith {call admin_weather};
 			if (_code == "AAATime") exitWith {call admin_time};
+			if (_code == "StarMission") exitWith {call admin_mission};
 		};
 		if (inSub) then
 		{
@@ -2729,6 +2731,21 @@ PV_AdminMenuCode = {
 		adminadd = adminadd + ["19 PM",{hint "Changing time to 19PM";PVAH_AdminRequest = [20,player,date,19];publicVariableServer "PVAH_AdminRequest";},"0","0","0","0",[]];
 		adminadd = adminadd + ["21 PM",{hint "Changing time to 21PM";PVAH_AdminRequest = [20,player,date,21];publicVariableServer "PVAH_AdminRequest";},"0","0","0","0",[]];
 		adminadd = adminadd + ["23 PM",{hint "Changing time to 23PM";PVAH_AdminRequest = [20,player,date,23];publicVariableServer "PVAH_AdminRequest";},"0","0","0","0",[]];
+		call admin__FILL_MENUS;
+	};
+admin_mission =
+	{
+		inSub = false;
+		_ctrl = 2 call getControl;
+		lbclear _ctrl;
+		adminadd = [];
+		call admin_fillsubsss;
+		adminadd = adminadd + ["Time Selection ","","0","1","0","0",[]];
+		adminadd = adminadd + ["Start Mission 1 - Bandit Camp",{hint "Starting Mission 1";PVAH_AdminRequest = [Missions\Major\SM1.sqf","SQF"];publicVariableServer "PVAH_AdminRequest";},"0","0","0","0",[]];
+		adminadd = adminadd + ["Start Mission 2",{hint "Starting Mission 2";PVAH_AdminRequest = [20,player,date,1];publicVariableServer "PVAH_AdminRequest";},"0","0","0","0",[]];
+		adminadd = adminadd + ["Start Mission 3",{hint "Starting Mission 3";PVAH_AdminRequest = [20,player,date,3];publicVariableServer "PVAH_AdminRequest";},"0","0","0","0",[]];
+		adminadd = adminadd + ["Start Mission 4",{hint "Starting Mission 4";PVAH_AdminRequest = [20,player,date,5];publicVariableServer "PVAH_AdminRequest";},"0","0","0","0",[]];
+		adminadd = adminadd + ["Start Mission 5",{hint "Starting Mission 5";PVAH_AdminRequest = [20,player,date,7];publicVariableServer "PVAH_AdminRequest";},"0","0","0","0",[]];
 		call admin__FILL_MENUS;
 	};
 	adminadd_show_pic =
@@ -4902,26 +4919,21 @@ diag_log ("infiSTAR.de ProPlan by infiSTAR.de - ADDING PublicVariableEventHandle
 			'100Rnd_762x51_M240','100Rnd_762x54_PK','100Rnd_556x45_BetaCMag','100Rnd_556x45_M249',
 			'200Rnd_556x45_L110A1','200Rnd_556x45_M249','BoltSteel','1Rnd_HE_GP25',
 			'1Rnd_HE_M203','1Rnd_Smoke_GP25','1Rnd_SmokeGreen_GP25','1Rnd_SmokeRed_GP25',
-			'1Rnd_SmokeYellow_GP25','1Rnd_Smoke_M203','1Rnd_SmokeGreen_M203',
-			'1Rnd_SmokeRed_M203','1Rnd_SmokeYellow_M203','6Rnd_HE_M203','BAF_ied_v1',
-			'FlareGreen_GP25','FlareRed_GP25','FlareWhite_GP25','FlareYellow_GP25',
-			'FlareGreen_M203','FlareRed_M203','FlareWhite_M203','FlareYellow_M203',
-			'HandGrenade_East','HandGrenade_West','M136','SmokeShell','SmokeShellBlue',
-			'SmokeShellGreen','SmokeShellOrange','SmokeShellPurple','SmokeShellRed',
-			'SmokeShellYellow','PipeBomb','FoodCanBakedBeans','FoodCanFrankBeans',
-			'FoodCanPasta','FoodCanSardines','FoodSteakCooked','FoodSteakRaw',
-			'HandChemBlue','HandChemGreen','HandChemRed','HandRoadFlare','ItemAntibiotic',
+			'6Rnd_HE_M203','BAF_ied_v1',			
+			'HandGrenade_East','HandGrenade_West','M136',			
+			'PipeBomb','FoodCanBakedBeans','FoodCanFrankBeans',
+			'FoodCanPasta','FoodCanSardines','FoodSteakCooked','FoodSteakRaw','ItemAntibiotic',
 			'ItemBandage','ItemBloodbag','ItemEpinephrine','ItemHeatPack','ItemJerrycan',
-			'ItemJerrycanEmpty','ItemMorphine','ItemPainkiller','ItemSandbag','ItemSodaCoke',
-			'ItemSodaEmpty','ItemSodaMdew','ItemSodaPepsi','ItemTankTrap','ItemTent',
-			'ItemWire','ItemWaterbottle','ItemWaterbottleUnfilled','PartEngine',
+			'ItemJerrycanEmpty','ItemMorphine','ItemPainkiller','ItemSandbag','ItemSodaRbull',
+			'ItemSodaMdew','ItemTankTrap','ItemTent',
+			'ItemWire','ItemWaterbottle','PartEngine',
 			'PartFueltank','PartGeneric','PartGlass','PartWheel','PartWoodPile',
-			'PartVRotor','TrapBear','TrashTinCan','TrashJackDaniels','Skin_Camo1_DZ',
+			'PartVRotor','TrapBear','Skin_Camo1_DZ',
 			'Skin_Soldier1_DZ','Skin_Sniper1_DZ','Skin_Survivor2_DZ'];
 			
-			{_b0x addWeaponCargoGlobal [_x, 5];} forEach _b0x_wpnlist;
+			{_b0x addWeaponCargoGlobal [_x, 1];} forEach _b0x_wpnlist;
 			{_b0x addMagazineCargoGlobal [_x, 20];} forEach _b0x_maglist;
-			_b0x addBackpackCargoGlobal ['DZ_Backpack_EP1', 1];
+			_b0x addBackpackCargoGlobal ['DZ_LargeGunBag_EP1', 1];
 		};
 	};
 	if (_option == 60) then 

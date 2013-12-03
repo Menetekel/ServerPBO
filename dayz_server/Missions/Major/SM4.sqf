@@ -24,15 +24,12 @@ _hueychop setFuel 0;
 _hueychop setVehicleAmmo 0;
 _hueychop setDamage 1;
 
-_crate2 = createVehicle ["USLaunchersBox",[(_coords select 0) - 6, _coords select 1,0],[], 0, "CAN_COLLIDE"];
-[_crate2] execVM "\z\addons\dayz_server\missions\misc\fillBoxesS.sqf";
-_crate2 setVariable ["Sarge",1,true];
-_crate2 = createVehicle ["USLaunchersBox",[(_coords select 0) + 6, _coords select 1,0],[], 90, "CAN_COLLIDE"];
-[_crate2] execVM "\z\addons\dayz_server\missions\misc\fillBoxesS.sqf";
-_crate2 setVariable ["Sarge",1,true];
-_crate3 = createVehicle ["RULaunchersBox",[(_coords select 0) - 14, (_coords select 1) -10,0],[], 0, "CAN_COLLIDE"];
-[_crate3] execVM "\z\addons\dayz_server\missions\misc\fillBoxesH.sqf";
-_crate3 setVariable ["Sarge",1,true];
+_crate = createVehicle ["USLaunchersBox",[(_coords select 0) + 6, _coords select 1,0],[], 90, "CAN_COLLIDE"];
+[_crate] execVM "\z\addons\dayz_server\missions\misc\fillBoxesS.sqf";
+_crate setVariable ["Sarge",1,true];
+_crate1 = createVehicle ["RULaunchersBox",[(_coords select 0) - 14, (_coords select 1) -10,0],[], 0, "CAN_COLLIDE"];
+[_crate1] execVM "\z\addons\dayz_server\missions\misc\fillBoxesH.sqf";
+_crate1 setVariable ["Sarge",1,true];
 
 _aispawn = [_coords,80,6,6,1] execVM "\z\addons\dayz_server\missions\add_unit_server.sqf";//AI Guards
 sleep 5;

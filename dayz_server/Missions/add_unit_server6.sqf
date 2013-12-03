@@ -98,7 +98,7 @@ private ["_aiunit","_xpos","_ypos","_unitpos","_aiGroup","_levelnum","_numunits"
         _aiunit enableAI "MOVE";
         _aiunit enableAI "ANIM";
         _aiunit enableAI "FSM";
-        _aiunit allowDammage true;
+        _aiunit allowDamage true;
 		
 		_aiunit addEventHandler ['killed',{_this execVM "\z\addons\dayz_server\Missions\bodyclean.sqf"}]; //Body disappear time
  
@@ -141,15 +141,15 @@ private ["_aiunit","_xpos","_ypos","_unitpos","_aiGroup","_levelnum","_numunits"
         _aiunit addMagazine "ItemBandage";
         };
         //set skills
-        _aiunit setSkill ["aimingAccuracy",0.8];
-        _aiunit setSkill ["aimingShake",0.9];
-        _aiunit setSkill ["aimingSpeed",0.9];
-        _aiunit setSkill ["endurance",0.9];
-        _aiunit setSkill ["spotDistance",0.9];
-        _aiunit setSkill ["spotTime",0.9];
-        _aiunit setSkill ["courage",0.9];
-        _aiunit setSkill ["reloadSpeed",1];
-        _aiunit setSkill ["commanding",1];
-        _aiunit setSkill ["general",1];
+        _aiunit setSkill ["aimingAccuracy",1.0];
+        _aiunit setSkill ["aimingShake",1.0];
+        _aiunit setSkill ["aimingSpeed",1.0];
+        _aiunit setSkill ["endurance",1.0];
+        _aiunit setSkill ["spotDistance",1.0];
+        _aiunit setSkill ["spotTime",1.0];
+        _aiunit setSkill ["courage",1.0];
+        _aiunit setSkill ["reloadSpeed",1.0];
+        _aiunit setSkill ["commanding",1.0];
+        _aiunit setSkill ["general",1.0];
         //sleep 0.5;
     };
