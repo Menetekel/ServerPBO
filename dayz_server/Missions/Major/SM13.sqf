@@ -20,9 +20,9 @@ _coord12 = [5266.6836,7273.8135,0];
 _coords = [_coord1, _coord2, _coord3, _coord4, _coord5, _coord6, _coord7, _coord8, _coord9, _coord10, _coord11, _coord12] call BIS_fnc_selectRandom;
 
 //Mission start
-[nil,nil,rTitleText,"A special weapons squad has arrived! Kill them for their weapons!", "PLAIN",6] call RE;
-[nil,nil,rGlobalRadio,"A special weapons squad has arrived! Kill them for their weapons!"] call RE;
-[nil,nil,rHINT,"A special weapons squad has arrived! Kill them for their weapons!"] call RE;
+[nil,nil,rTitleText,"MJ13: A special weapons squad has arrived! Kill them for their weapons!", "PLAIN",6] call RE;
+[nil,nil,rGlobalRadio,"MJ13: A special weapons squad has arrived! Kill them for their weapons!"] call RE;
+[nil,nil,rHINT,"MJ13 A special weapons squad has arrived! Kill them for their weapons!"] call RE;
 
 Ccoords = _coords;
 publicVariable "Ccoords";

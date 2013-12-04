@@ -173,7 +173,6 @@ private ["_aiunit","_xpos","_ypos","_unitpos","_aiGroup","_wppos","_wpradius","_
 			unitBackpack _aiunit addMagazineCargo ["FoodCanBakedBeans",2];
 			unitBackpack _aiunit addMagazineCargo ["ItemSodaCoke",2];
 			unitBackpack _aiunit addMagazineCargo ["ItemJerryCan",1];
-			unitBackpack _aiunit addMagazineCargo ["PipeBomb",2];
 		};
 		if (_levelnum==1) then {
 			removeBackpack _aiunit;
@@ -187,8 +186,6 @@ private ["_aiunit","_xpos","_ypos","_unitpos","_aiGroup","_wppos","_wpradius","_
 			unitBackpack _aiunit addMagazineCargo ["ItemBandage",2];
 			unitBackpack _aiunit addMagazineCargo ["FoodCanBakedBeans",2];
 			unitBackpack _aiunit addMagazineCargo ["ItemSodaCoke",2];
-			unitBackpack _aiunit addMagazineCargo ["PipeBomb",2];
-			unitBackpack _aiunit addMagazineCargo ["Mine",2];
 		};
 		
 		

@@ -2733,21 +2733,17 @@ PV_AdminMenuCode = {
 		adminadd = adminadd + ["23 PM",{hint "Changing time to 23PM";PVAH_AdminRequest = [20,player,date,23];publicVariableServer "PVAH_AdminRequest";},"0","0","0","0",[]];
 		call admin__FILL_MENUS;
 	};
-admin_mission =
+/*admin_mission =
 	{
 		inSub = false;
 		_ctrl = 2 call getControl;
 		lbclear _ctrl;
 		adminadd = [];
 		call admin_fillsubsss;
-		adminadd = adminadd + ["Time Selection ","","0","1","0","0",[]];
-		adminadd = adminadd + ["Start Mission 1 - Bandit Camp",{hint "Starting Mission 1";PVAH_AdminRequest = [Missions\Major\SM1.sqf","SQF"];publicVariableServer "PVAH_AdminRequest";},"0","0","0","0",[]];
-		adminadd = adminadd + ["Start Mission 2",{hint "Starting Mission 2";PVAH_AdminRequest = [20,player,date,1];publicVariableServer "PVAH_AdminRequest";},"0","0","0","0",[]];
-		adminadd = adminadd + ["Start Mission 3",{hint "Starting Mission 3";PVAH_AdminRequest = [20,player,date,3];publicVariableServer "PVAH_AdminRequest";},"0","0","0","0",[]];
-		adminadd = adminadd + ["Start Mission 4",{hint "Starting Mission 4";PVAH_AdminRequest = [20,player,date,5];publicVariableServer "PVAH_AdminRequest";},"0","0","0","0",[]];
-		adminadd = adminadd + ["Start Mission 5",{hint "Starting Mission 5";PVAH_AdminRequest = [20,player,date,7];publicVariableServer "PVAH_AdminRequest";},"0","0","0","0",[]];
+		adminadd = adminadd + ["Start Mission 1",{hint "Starting Mission 1";PVAH_AdminRequest = ""\z\addons\dayz_server\Missions\Major\SM1.sqf"";
 		call admin__FILL_MENUS;
-	};
+	};*/
+	
 	adminadd_show_pic =
 	{
 		private ['_pic','_txt','_selected'];

@@ -8,9 +8,9 @@ WaitUntil {MissionGo == 1};
 _coords = [getMarkerPos "center",0,5500,50,0,20,0] call BIS_fnc_findSafePos;
 
 //Mission start
-[nil,nil,rTitleText,"Bandits have set up an Outpost and are gathering building supplies! Check your map for the location!", "PLAIN",10] call RE;
-[nil,nil,rGlobalRadio,"Bandits have set up an Outpost and are gathering building supplies! Check your map for the location!"] call RE;
-[nil,nil,rHINT,"Bandits have set up an Outpost and are gathering building supplies! Check your map for the location!"] call RE;
+[nil,nil,rTitleText,"MJ3: Bandits have set up an Outpost and are gathering building supplies! Check your map for the location!", "PLAIN",10] call RE;
+[nil,nil,rGlobalRadio,"MJ3: Bandits have set up an Outpost and are gathering building supplies! Check your map for the location!"] call RE;
+[nil,nil,rHINT,"MJ3: Bandits have set up an Outpost and are gathering building supplies! Check your map for the location!"] call RE;
 
 Ccoords = _coords;
 publicVariable "Ccoords";

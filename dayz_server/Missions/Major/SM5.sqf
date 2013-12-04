@@ -8,9 +8,9 @@ WaitUntil {MissionGo == 1};
 _coords = [getMarkerPos "center",0,5500,30,0,20,0] call BIS_fnc_findSafePos;
 
 //Mission start
-[nil,nil,rTitleText,"Bandits have destroyed a Ural carrying medical supplies and are securing the cargo! Check your map for the location!", "PLAIN",10] call RE;
-[nil,nil,rGlobalRadio,"Bandits have destroyed a Ural carrying medical supplies and are securing the cargo! Check your map for the location!"] call RE;
-[nil,nil,rHINT,"Bandits have destroyed a Ural carrying medical supplies and are securing the cargo! Check your map for the location!"] call RE;
+[nil,nil,rTitleText,"MJ5: Bandits have destroyed a Ural carrying medical supplies and are securing the cargo! Check your map for the location!", "PLAIN",10] call RE;
+[nil,nil,rGlobalRadio,"MJ5: Bandits have destroyed a Ural carrying medical supplies and are securing the cargo! Check your map for the location!"] call RE;
+[nil,nil,rHINT,"MJ5: Bandits have destroyed a Ural carrying medical supplies and are securing the cargo! Check your map for the location!"] call RE;
 
 Ccoords = _coords;
 publicVariable "Ccoords";

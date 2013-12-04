@@ -7,9 +7,9 @@ WaitUntil {MissionGoMinor == 1};
 _coords =  [getMarkerPos "center",0,7000,10,0,2000,0] call BIS_fnc_findSafePos;
 
 //Mission start
-[nil,nil,rTitleText,"A humvee has crashed! Kill any survivors and secure the loot!", "PLAIN",6] call RE;
-[nil,nil,rGlobalRadio,"A humvee has crashed! Kill any survivors and secure the loot!"] call RE;
-[nil,nil,rHINT,"A humvee has crashed! Kill any survivors and secure the loot!"] call RE;
+[nil,nil,rTitleText,"MN11: A humvee has crashed! Kill any survivors and secure the loot!", "PLAIN",6] call RE;
+[nil,nil,rGlobalRadio,"MN11: A humvee has crashed! Kill any survivors and secure the loot!"] call RE;
+[nil,nil,rHINT,"MN11: A humvee has crashed! Kill any survivors and secure the loot!"] call RE;
 
 
 MCoords = _coords;
@@ -25,8 +25,8 @@ sleep 1;
 if (isDedicated) then {
 
 	_num = round(random 5) + 2;
-	_itemType =		[["LeeEnfield","magazine"], ["Mk_48_DZ","magazine"], ["FN_FAL", "weapon"], ["bizon_silenced", "weapon"], ["M14_EP1", "weapon"], ["AK_107_PSO", "weapon"], ["MakarovSD", "weapon"], ["Mk_48_DZ", "weapon"], ["M249_DZ", "weapon"], ["bizon_silenced", "weapon"], ["", "military"], ["", "medical"], ["MedBox0", "object"], ["NVGoggles", "weapon"], ["AmmoBoxSmall_556", "object"], ["AmmoBoxSmall_762", "object"]  ];
-	_itemChance =	[0.08, 									0.08,										0.02,					 0.05,							 0.05, 					0.01, 				0.03, 						0.02, 					0.03, 				0.05, 				0.1, 				0.1, 			0.2, 						0.07, 					0.01, 							0.01, 	];					
+	_itemType =		[["LeeEnfield","magazine"], ["Mk_48_DZ","magazine"], ["FN_FAL", "weapon"], ["bizon_silenced", "weapon"], ["M14_EP1", "weapon"], ["AK_107_PSO", "weapon"], ["Makarov", "weapon"], ["Mk_48_DZ", "weapon"], ["bizon_silenced", "weapon"], ["", "military"], ["", "medical"], ["MedBox0", "object"], ["AmmoBoxSmall_556", "object"], ["AmmoBoxSmall_762", "object"]  ];
+	_itemChance =	[0.08, 									0.08,						0.02,					 0.05,				 0.05, 					0.01, 					0.03, 						0.02, 				0.05, 						0.1, 				0.1, 			0.2, 							0.01, 							0.01, 	];					
 	
 	waituntil {!isnil "fnc_buildWeightedArray"};
 	
