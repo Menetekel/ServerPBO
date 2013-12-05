@@ -40,9 +40,9 @@ private ["_aiunit","_xpos","_ypos","_unitpos","_aiGroup","_wppos","_wpradius","_
                 _ailoadout=
                 switch (_rndLOut) do
                 {
-                  case 0: {["LeeEnfield","10x_303","Makarov","8Rnd_9x18_Makarov"]};
-                  case 1: {["Huntingrifle","5x_22_LR_17_HMR","Makarov","8Rnd_9x18_Makarov"]};
-                  case 2: {["M14_EP1","20Rnd_762x51_DMR","Makarov","8Rnd_9x18_Makarov"]};
+                  case 0: {["LeeEnfield","10x_303","Makarov","17Rnd_9x19_glock17"]};
+                  case 1: {["Huntingrifle","5x_22_LR_17_HMR","Makarov","17Rnd_9x19_glock17"]};
+                  case 2: {["M14_EP1","20Rnd_762x51_DMR","Makarov","17Rnd_9x19_glock17"]};
                 };
             };
         };
@@ -55,13 +55,13 @@ private ["_aiunit","_xpos","_ypos","_unitpos","_aiGroup","_wppos","_wpradius","_
                 _ailoadout=
                 switch (_rndLOut) do
                 {
-                  case 0: {["AK_47_M","30Rnd_762x39_AK47","MakarovSD","8Rnd_9x18_Makarov"]};
-                  case 1: {["M4A1_RCO_GL","30Rnd_762x39_AK47","M9SD","15Rnd_9x19_M9SD"]};
-                  case 2: {["Sa58P_EP1","30Rnd_762x39_SA58","MakarovSD","8Rnd_9x18_Makarov"]};
-                  case 3: {["Sa58V_CCO_EP1","30Rnd_762x39_SA58","M9SD","15Rnd_9x19_M9SD"]};
-                  case 4: {["Sa58V_EP1","30Rnd_762x39_SA58","MakarovSD","8Rnd_9x18_Makarov"]};
-                  case 5: {["M4SPR","30Rnd_556x45_Stanag","M9SD","15Rnd_9x19_M9SD"]};
-                  case 6: {["M4A1_HWS_GL_SD_Camo","30Rnd_556x45_StanagSD","MakarovSD","8Rnd_9x18_Makarov"]};
+                  case 0: {["AK_47_M","30Rnd_762x39_AK47","glock17_EP1","17Rnd_9x19_glock17"]};
+                  case 1: {["M4A1_RCO_GL","30Rnd_762x39_AK47","glock17_EP1","15Rnd_9x19_M9SD"]};
+                  case 2: {["Sa58P_EP1","30Rnd_762x39_SA58","glock17_EP1","17Rnd_9x19_glock17"]};
+                  case 3: {["Sa58V_CCO_EP1","30Rnd_762x39_SA58","glock17_EP1","15Rnd_9x19_M9SD"]};
+                  case 4: {["Sa58V_EP1","30Rnd_762x39_SA58","glock17_EP1","17Rnd_9x19_glock17"]};
+                  case 5: {["M4SPR","30Rnd_556x45_Stanag","glock17_EP1","15Rnd_9x19_M9SD"]};
+                  case 6: {["M4A1_HWS_GL_SD_Camo","30Rnd_556x45_StanagSD","glock17_EP1","17Rnd_9x19_glock17"]};
                 };
             };
             if ((x == 2) || (x == 3)) then //troops sergeant
@@ -73,8 +73,8 @@ private ["_aiunit","_xpos","_ypos","_unitpos","_aiGroup","_wppos","_wpradius","_
                 {
                   case 0: {["LeeEnfield","10x_303","glock17_EP1","17Rnd_9x19_glock17"]};
                   case 1: {["RPK_74","75Rnd_545x39_RPK","M9","15Rnd_9x19_M9"]};
-                  case 2: {["AK_47_M","30Rnd_762x39_AK47","MakarovSD","8Rnd_9x18_Makarov"]};
-                  case 3: {["M4SPR","30Rnd_556x45_Stanag","MakarovSD","8Rnd_9x18_Makarov"]};
+                  case 2: {["AK_47_M","30Rnd_762x39_AK47","glock17_EP1","17Rnd_9x19_glock17"]};
+                  case 3: {["M4SPR","30Rnd_556x45_Stanag","glock17_EP1","17Rnd_9x19_glock17"]};
                 };
             };
             if (x > 3) then //troops soldiers
@@ -85,10 +85,10 @@ private ["_aiunit","_xpos","_ypos","_unitpos","_aiGroup","_wppos","_wpradius","_
                 _ailoadout=
                 switch (_rndLOut) do
                 {
-                  case 0: {["AK_47_M","30Rnd_762x39_AK47","MakarovSD","8Rnd_9x18_Makarov"]};
-                  case 1: {["M4SPR","30Rnd_556x45_Stanag","MakarovSD","8Rnd_9x18_Makarov"]};
-                  case 2: {["LeeEnfield","10x_303","MakarovSD","8Rnd_9x18_Makarov"]};
-                  case 3: {["SVD","10Rnd_762x54_SVD","MakarovSD","8Rnd_9x18_Makarov"]};
+                  case 0: {["AK_47_M","30Rnd_762x39_AK47","glock17_EP1","17Rnd_9x19_glock17"]};
+                  case 1: {["M4SPR","30Rnd_556x45_Stanag","glock17_EP1","17Rnd_9x19_glock17"]};
+                  case 2: {["LeeEnfield","10x_303","glock17_EP1","17Rnd_9x19_glock17"]};
+                  case 3: {["SVD","10Rnd_762x54_SVD","glock17_EP1","17Rnd_9x19_glock17"]};
 			      case 4: {["AK_107_pso","30Rnd_545x39_AK","M9","15Rnd_9x19_M9"]};
                 };
             };

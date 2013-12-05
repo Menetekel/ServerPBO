@@ -700,8 +700,8 @@ call compile ("
 							];
 							_watched =
 							[
-								'PipeBomb','ItemVault','CinderBlocks','ItemLockbox','NVGoggles','Binocular_Vector','ItemHatchet_DZ',
-								'ItemMatchbox_DZ','DMR_DZ','ItemMap','ItemGPS'
+								'PipeBomb','ItemVault','CinderBlocks','ItemLockbox','Binocular_Vector','ItemHatchet_DZ',
+								'ItemMatchbox_DZ','DMR','ItemMap','ItemGPS'
 							];
 							_pwep = primaryWeapon player;
 							if (((_opwep != _pwep) && !(_pwep in _inv_plr) && !(_pwep in _allowed) && (_pwep != '')) || (_x in _watched)) then
@@ -1738,7 +1738,7 @@ PV_AdminMenuCode = {
 		adminadd = adminadd + ["   +View WeatherLord Menu","Weather","0","0","1","0",[0,0.6,1,1]];
 		adminadd = adminadd + ["   +View TimeLord Menu","AAATime","0","0","1","0",[0,0.6,1,1]];
 		if (getPlayerUID player in PV_SuperLevel_List) then {adminadd = adminadd + ["   +View Spawn Menu","SpawnMenu","0","0","1","0",[0,0.6,1,1]];};
-		adminadd = adminadd + ["   +Server Mission and Event Menu","StarMission","0","0","1","0",[0,0.6,1,1]]; //starfish
+//		adminadd = adminadd + ["   +Server Mission and Event Menu","StarMission","0","0","1","0",[0,0.6,1,1]]; //starfish
 		adminadd = adminadd + ["========================================================================================================================","","0","1","0","0",[]];
 	};
 	SuperAdmin_MENU =
@@ -1913,7 +1913,7 @@ PV_AdminMenuCode = {
 			if (_code == "tempbanned") exitWith {call admin_filltmpban};
 			if (_code == "Weather") exitWith {call admin_weather};
 			if (_code == "AAATime") exitWith {call admin_time};
-			if (_code == "StarMission") exitWith {call admin_mission};
+//			if (_code == "StarMission") exitWith {call admin_mission};
 		};
 		if (inSub) then
 		{
@@ -4885,7 +4885,7 @@ diag_log ("infiSTAR.de ProPlan by infiSTAR.de - ADDING PublicVariableEventHandle
 			'BAF_L86A2_ACOG','BAF_LRR_scoped','BAF_LRR_scoped_W','bizon','bizon_silenced',
 			'Colt1911','Crossbow','DMR','G36_C_SD_camo','G36_C_SD_eotech','G36a',
 			'G36A_camo','G36C','G36C_camo','G36K','G36K_camo','FN_FAL','FN_FAL_ANPVS4',
-			'glock17_EP1','Huntingrifle','ksvk','LeeEnfield','M1014','m107_DZ',
+			'glock17_EP1','Huntingrifle','ksvk','LeeEnfield','M1014',
 			'M14_EP1','M16A2','M16A2GL','m16a4','m16a4_acg','M16A4_ACG_GL','M16A4_GL',
 			'M24','M24_des_EP1','M240','m240_scoped_EP1','M249','M249_EP1','M249_m145_EP1',
 			'M40A3','M4A1','M4A1_Aim','M4A1_Aim_camo','M4A1_AIM_SD_camo','M4A1_HWS_GL',

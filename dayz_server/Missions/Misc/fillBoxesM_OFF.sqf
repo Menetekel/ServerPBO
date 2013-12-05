@@ -5,7 +5,7 @@ clearMagazineCargoGlobal _crate;
 
 _crate addMagazineCargoGlobal ["ItemBandage", 100];
 
-_crate addWeaponCargoGlobal ["ItemMatchbox", 50];
+_crate addWeaponCargoGlobal ["ItemMatchbox_DZE", 50];
 
 _crate addMagazineCargoGlobal ["ItemMorphine", 50];
 
