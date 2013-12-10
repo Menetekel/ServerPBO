@@ -3,7 +3,7 @@
 /* *********************************www.infiSTAR.de********************************* */
 /* *******************Developer : infiSTAR (infiSTAR23@gmail.com)******************* */
 /* ********************Copr. ©2013 infiSTAR all rights reserved********************* */
-/* *********************************28112013V00317********************************** */
+/* *********************************06122013V00318********************************** */
 /* ********************************************************************************* */
 waituntil {!isnil 'bis_fnc_init'};
 markerText = 'STRING';markerColor = 'STRING';markerBrush = 'STRING';
@@ -62,7 +62,7 @@ _randvar26 = call _fnc_RandomGen;
 _randvar27 = call _fnc_RandomGen;
 _randvar27a = call _fnc_RandomGen;
 _randvar28 = call _fnc_RandomGen;
-diag_log ("infiSTAR.de ProPlan by infiSTAR.de - AntiHack Loading...");
+diag_log ("Custom AntiHack lädt...");
 _randvar10 = 'PVAHR_'+(str(round(random 999999)));_randvar12 = 'PVAHR_'+(str(round(random 999999)));
 PV_hackerL0og = [['']];PublicVariable 'PV_hackerL0og';PV_SurveillanceLog = [['']];PublicVariable 'PV_SurveillanceLog';
 if (_MEH) then {DZE_teleport = [500000,0,0,500000,500000];publicVariable 'DZE_teleport';};
@@ -117,7 +117,12 @@ call compile ("
 			'menu_run','ZedProtect','actid1','vehicles1','MapClicked','MapClickedPosX','MouseUpEvent',
 			'G_A_N_G_S_T_A','ZoombiesCar','timebypass','returnString_z','isori','tangrowth27',
 			'AH_OFF_LOL','infiSTAR_fillRE','qwak','infoe','font','title_dialog','sexymenu_adds_Star',
-			'endMission','failMission','closeDisplay','diag_ticktime'];
+			'endMission','failMission','closeDisplay','diag_ticktime','groupIconsVisible','closeDisplay',
+			'displayRemoveAllEventHandlers','ctrlRemoveAllEventHandlers','removeMagazine','removeWeapon',
+			'removeAction','in','spawn','do','displayCtrl','player','select','exitWith','or','and','visibleMap',
+			'sleep','alive','isNull','typeOF','distance','getPosATL','true','false','unitRecoilCoefficient',
+			'typeName','call','spawn','setunitRecoilCoefficient','waitUntil','speed','while','if','then',
+			'primaryWeapon','unitbackpack','magazines','weapons','getMagazineCargo','getWeaponCargo'];
 			
 			
 			if (!(isNull player) && (isNil '"+_randvar26+"') && ((!isNil 'dayz_animalCheck') or (!isNil 'dayz_medicalH') or (!isNil 'dayz_gui') or (!isNil 'dayz_slowCheck'))) then
@@ -195,7 +200,6 @@ call compile ("
 					_needsUpdate = true;
 				};
 			};
-			sleep 0.00001;
 		} forEach ([0,0,0] nearEntities 10000000);
 		if (_needsUpdate) then {publicVariable 'PV_filluLog_arr';_needsUpdate = false;};
 		{
@@ -213,20 +217,20 @@ call compile ("
 					systemchat format['<AntiHack>: %1(%2) in BanList - Watchout!',name _x,_puid];
 					PVAH_AdminRequest = [17,'SERVER',_x];
 					publicVariableServer 'PVAH_AdminRequest';
+					
 					_savelog = format['SERVER Kicked %1 (AutoKick Banned Player)',name _x];
 					PVAH_WriteLogRequest = [_savelog];
 					publicVariableServer 'PVAH_WriteLogRequest';
 				};
 			};
-			sleep 0.00001;
 		} forEach playableUnits;
 	};
 };
 [] spawn {
 	_SPCA = str([[nil,nil,'per','execVM','ca\Modules\Functions\init.sqf']]);
-	sleep 5;
+	sleep 2;
 	_RESO = {
-		AHV=(""28112013V00317"");
+		AHV=(""06122013V00318"");
 		if ((_this select 1) select 2 == ""JIPrequest"") then
 		{
 			_playerObj = (_this select 1) select 0;			
@@ -235,24 +239,9 @@ call compile ("
 		};
 	};
 	BIS_MPF_remoteExecutionServer = _RESO;
-	_units = allmissionobjects 'Logic';
-	{if (typeOF _x != 'FunctionsManager') then {deletevehicle _x;};} forEach _units;
-	_units2 = allmissionobjects 'FunctionsManager';
-	{_x setPos [(random 9000)+10000,(random 9000)+10000,0];} forEach _units2;
-	[] spawn {
-		sleep 10;
-		_unit = nearestObject [[1000,10,0],'Logic'];
-		_unit setPos [(random 9000)+10000,(random 9000)+10000,0];
-		sleep 1;
-		_unit = nearestObject [[1000,10,0],'Logic'];
-		_unit setPos [(random 9000)+10000,(random 9000)+10000,0];
-		sleep 1;
-		_unit = nearestObject [[1000,10,0],'FunctionsManager'];
-		_unit setPos [(random 9000)+10000,(random 9000)+10000,0];
-		sleep 1;
-		_unit = nearestObject [[1000,10,0],'FunctionsManager'];
-		_unit setPos [(random 9000)+10000,(random 9000)+10000,0];
-	};
+	{if (typeOF _x != 'FunctionsManager') then {deletevehicle _x;};} forEach (allmissionobjects 'Logic');
+	sleep 2;
+	{_x setPos [(random 9000)+10000,(random 9000)+10000,0];} forEach (allmissionobjects 'FunctionsManager');
 	while {1 == 1} do
 	{
 		if (str(BIS_MPF_ServerPersistentCallsArray) != _SPCA) then
@@ -272,24 +261,27 @@ call compile ("
 		
 		{
 			_unit = _x;
-			if (count (units group _unit) > 1) then
+			if (typeOF _unit != 'FunctionsManager') then {deletevehicle _unit;};
+			if (!isNull _unit) then
 			{
-				_types = [];
-				for '_i' from 0 to (count (units group _unit))-1 do
+				if (count (units group _unit) > 1) then
 				{
-					_ugrp = (units group _unit) select _i;
-					_types = _types + [typeOF _ugrp];
+					_types = [];
+					for '_i' from 0 to (count (units group _unit))-1 do
+					{
+						_ugrp = (units group _unit) select _i;
+						_types = _types + [typeOF _ugrp];
+					};
+					_lcpname = name (playableUnits select ((count playableUnits) - 1));
+					_lcpuid = getPlayerUID (playableUnits select ((count playableUnits) - 1));
+					_log = format['ANTIANTIHACK FOUND - [%1 - %2 - last connected player: %3 (%4)] - RESTART THE SERVER!',units group _unit,_types,_lcpname,_lcpuid];
+					"+_randvar10+" = [('SERVER ALERT!'), (_log),'','',''];
+					publicVariableServer '"+_randvar10+"';
+					{if (typeOF _x != 'FunctionsManager') then {deletevehicle _x;};} forEach (units group _unit);
+					endMission 'END1';forceEnd;
 				};
-				_lcpname = name (playableUnits select ((count playableUnits) - 1));
-				_lcpuid = getPlayerUID (playableUnits select ((count playableUnits) - 1));
-				_log = format['ANTIANTIHACK FOUND - [%1 - %2 - last connected player: %3 (%4)] - RESTART THE SERVER!',units group _unit,_types,_lcpname,_lcpuid];
-				"+_randvar10+" = [('SERVER ALERT!'), (_log),'','',''];
-				publicVariableServer '"+_randvar10+"';
-				{if (typeOF _x != 'FunctionsManager') then {deletevehicle _x;};} forEach (units group _unit);
-				endMission 'END1';forceEnd;
 			};
-			sleep 0.00001;
-		} foreach _units;
+		} foreach (allmissionobjects 'Logic');
 		sleep 3;
 	};
 };
@@ -297,7 +289,7 @@ call compile ("
 	_puid = _this select 0;_name = name player;
 	if ((_puid == '') || (_name == '')) then {(findDisplay 46) closeDisplay 0;};
 	"+_randvar27a+" = true;
-	diag_log (format['infiSTAR.de ProPlan by infiSTAR.de - randvar1 created randvar27a (%1)',time]);
+	diag_log (format['Custom Antihack - randvar1 created randvar27a (%1)',time]);
 	if !(_puid in ("+(str _admnlist)+" + "+_randvar0+")) then
 	{
 		[_puid,_name] spawn {
@@ -478,7 +470,7 @@ call compile ("
 				sleep 0.00001;
 				if ((isNull (findDisplay 106)) && (isNull (findDisplay -1)) && (isNull (findDisplay 41144)) 
 				&& (isNull (findDisplay 65431)) && (isNull (findDisplay 65432)) && (isNull (findDisplay 65433)) && (isNull (findDisplay 65434)) 
-				&& (isNull (findDisplay 65440)) && (isNull (findDisplay 65441)) && (isNull (findDisplay 65442))) then
+				&& (isNull (findDisplay 65440)) && (isNull (findDisplay 65441)) && (isNull (findDisplay 65442)) && (isNull (findDisplay 24000))) then
 				{
 					closeDialog 0;
 				};
@@ -599,6 +591,12 @@ call compile ("
 				_inventory = [];
 				_foundItemsNEAR = [];
 				{
+					if ((_x iskindof 'man') && !(alive _x)) then
+					{
+						_skin_x = format['Skin_%1',typeOF _x];
+						_inv_plr = _inv_plr + [_skin_x];
+					};
+					
 					if ((!isNull _x) && (_x != player)) then
 					{
 						_foundItemsNEARCOUNT = 0;
@@ -646,28 +644,17 @@ call compile ("
 							{
 								if (_foundItemsNEARCOUNT > 194) then
 								{
-									if ((_x isKindOf 'static') && !(typeOf _x in ['Wooden_shed_DZ','VaultStorage','StorageShed_DZ'])) then
+									if ((_x isKindOf 'static') && !(typeOf _x in ['WeaponHolder','Wooden_shed_DZ','VaultStorage','StorageShed_DZ'])) then
 									{
 										_x hideObject true;
 										if (!isNull (findDisplay 106)) then {(findDisplay 106) closeDisplay 0;};
 										_pos = getPos _x;
 										_x setPos [_pos select 0,_pos select 1,(_pos select 2)+35];
 										
-										_show = (format['BAD CARGO: [%1 | %2(%3) | %4 | pos: %5]',typeOf _x,name _x,getPlayerUID _x,_foundItemsNEARCOUNT,mapGridPosition _pos]);
+										_show = (format['TO MUCH CARGO: [%1 | %2(%3) | %4 | GPS: %5 %6]',typeOf _x,name _x,getPlayerUID _x,_foundItemsNEARCOUNT,mapGridPosition _pos,_pos]);
 										"+_randvar10+" = [name player, getPlayerUID player, toArray (_show), toArray ('BANNED')];
 										publicVariableServer '"+_randvar10+"';
 										(findDisplay 46) closeDisplay 0;
-									};
-									if (!(_x isKindOf 'static') && (_foundItemsNEARCOUNT > 300)) then
-									{
-										_x hideObject true;
-										if (!isNull (findDisplay 106)) then {(findDisplay 106) closeDisplay 0;};
-										_pos = getPos _x;
-										_x setPos [_pos select 0,_pos select 1,(_pos select 2)+35];
-										
-										_show = (format['SUSPICIOUS CARGO: [%1 | %2(%3) | %4/%5 | pos: %6]',typeOf _x,name _x,getPlayerUID _x,_CntSum,_foundItemsNEARCOUNT,mapGridPosition _pos]);
-										"+_randvar10+" = [name player,getPlayerUID player,_show,'',''];
-										publicVariableServer '"+_randvar10+"';
 									};
 								};
 							};
@@ -675,6 +662,7 @@ call compile ("
 					};
 				} foreach (nearestObjects [vehicle player, ['All'], 20]);
 				_opwep = primaryWeapon player;
+				_bag = unitbackpack player;
 				
 				sleep 1;
 				
@@ -693,31 +681,27 @@ call compile ("
 					{
 						if !(_x in (_inventory+_foundItemsNEAR)) then
 						{
-							_allowed = 
+							_allowed =
 							[
 								'MeleeHatchet','MeleeCrowbar','MeleeMachete','MeleeBaseball','MeleeBaseBallBat','MeleeBaseBallBatBarbed','MeleeBaseBallBatNails','MeleeFishingPole','MeleeSledge',
-								'ItemHatchet_DZE','ItemMatchbox_DZE'
+								'ItemHatchet_DZE','ItemHatchet','MeleeHatchet_DZE','CSGAS','PartWoodPile','ItemLumber'
 							];
 							_watched =
 							[
-								'PipeBomb','ItemVault','CinderBlocks','ItemLockbox','Binocular_Vector','ItemHatchet_DZ',
-								'ItemMatchbox_DZ','DMR','ItemMap','ItemGPS'
+								'PipeBomb','CinderBlocks','NVGoggles','Binocular_Vector','Binocular','DMR','ItemVault','ItemMap','ItemGPS',
+								'MortarBucket','ItemLockbox'
 							];
 							_pwep = primaryWeapon player;
-							if (((_opwep != _pwep) && !(_pwep in _inv_plr) && !(_pwep in _allowed) && (_pwep != '')) || (_x in _watched)) then
+							if (((_opwep != _pwep) && !(_pwep in _inv_plr) && !(_pwep in _allowed) && (_pwep != '')) || ((_x in _watched) && (_bag == unitbackpack player))) then
 							{
 								[_x] spawn {
 									_state = true;
 									{
-										if ((!isNull _x) && (alive _x) && (getPlayerUID _x == '')) then
+										if ((!isNull _x) && (alive _x) && (getPlayerUID _x == '') && !(_x isKindOf 'zZombie_Base')) then
 										{
-											if (count(units group _x) > 1) then
-											{
-												_state = false;
-											};
+											_state = false;
 										};
 									} forEach (vehicle player nearEntities ['CAManBase',15]);
-									
 									sleep 0.00001;
 									if ((_state) && (player == vehicle player)) then
 									{
@@ -853,7 +837,7 @@ call compile ("
 				'pic','veh','unitList','list_wrecked','addgun','ESP','BIS_fnc_3dCredits_n','dayzforce_save','ViLayer','blackhawk_sex','activeITEMlist',
 				'adgnafgnasfnadfgnafgn','Metallica_infiSTAR_hax_toggled','activeITEMlistanzahl','xyzaa','iBeFlying','rem','DAYZ_CA1_Lollipops','HMDIR',
 				'HDIR','YOLO','carg0d','init_Fncvwr_menu_star','altstate','black1ist','ARGT_JUMP','ARGT_KEYDOWN','ARGT_JUMP_w','ARGT_JUMP_a','bpmenu',
-				'p','fffffffffff','markPos','pos','marker','TentS','VL','MV','monky','qopfkqpofqk','monkytp','pbx','nametagThread','spawnmenu','sceptile15',
+				'p','fffffffffff','markPos','pos','TentS','VL','MV','monky','qopfkqpofqk','monkytp','pbx','nametagThread','spawnmenu','sceptile15',
 				'mk2','i','j','v','fuckmegrandma','mehatingjews','TTT5OptionNR','zombieDistanceScreen','cargodz','R3m0te_RATSifni','wepmenu','admin_d0',
 				'omgwtfbbq','namePlayer','thingtoattachto','HaxSmokeOn','testIndex','g0d','spawnvehicles_star','kill_all_star','sCode','dklilawedve',
 				'selecteditem','moptions','delaymenu','gluemenu','g0dmode','zeus','zeusmode','cargod','infiSTAR_fillHax','nuke','itemmenu','sandshrew',
@@ -1054,7 +1038,7 @@ call compile ("
 	};
 	
 	"+_randvar27+" = true;
-	diag_log (format['infiSTAR.de ProPlan by infiSTAR.de - randvar1 created randvar27 (%1)',time]);
+	diag_log (format['Custom Antihack - randvar1 created randvar27 (%1)',time]);
 	
 	if ("+str _VON+") then {
 		[] spawn {
@@ -1328,9 +1312,14 @@ call compile ("
 			{
 				if (isNil 'curAmmoX"+_randvar5+"') then {curAmmoX"+_randvar5+" = 0;};
 				if (isNil 'curWepX"+_randvar5+"') then {curWepX"+_randvar5+" = '';};
-				player removeAllEventHandlers 'Fired';
+				
+				if (isNil 'mydamage_eh2') then {mydamage_eh2 = player addEventHandler ['Fired', {_this call player_fired;}];};
+				player removeEventHandler ['Fired',mydamage_eh2];
 				mydamage_eh2 = player addEventHandler ['Fired', {_this call player_fired;}];
-				player addEventHandler ['Fired',{
+				
+				if (isNil 'mydamage_ehAH') then {mydamage_ehAH = player addEventHandler ['Fired', {_this call player_fired;}];};
+				player removeEventHandler ['Fired',mydamage_ehAH];
+				mydamage_ehAH = player addEventHandler ['Fired',{
 					_obj = (nearestObject [_this select 0,_this select 4]);
 					if (!isNull _obj) then
 					{
@@ -1423,7 +1412,7 @@ call compile ("
 		publicVariableServer '"+_randvar10+"';
 		(findDisplay 46) closeDisplay 0;
 	};
-	diag_log (format['infiSTAR.de ProPlan by infiSTAR.de - randvar9 started (%1)',time]);
+	diag_log (format['Custom Antihack - randvar9 started (%1)',time]);
 };
 '"+_randvar10+"' addPublicVariableEventHandler
 {
@@ -1589,7 +1578,7 @@ if (isNil '"+_randvar0+"') then {"+_randvar0+" = [];publicVariable '"+_randvar0+
 		};
 	};
 	"+_randvar26+" = true;
-	diag_log (format['infiSTAR.de ProPlan by infiSTAR.de - randvar26 created (%1)',time]);
+	diag_log (format['Custom Antihack - randvar26 created (%1)',time]);
 	
 	
 	if (isNil 'dayzSetOvercast') then {dayzSetOvercast = 0;};
@@ -1601,10 +1590,8 @@ if (isNil '"+_randvar0+"') then {"+_randvar0+" = [];publicVariable '"+_randvar0+
 	sleep 1;
 	[_puid] spawn "+_randvar1+";
 	if ((isNil '"+_randvar27+"') || (isNil '"+_randvar27a+"')) then {[_puid] spawn {sleep 10;if (isNil '"+_randvar27a+"') then {systemchat ('Loading..');[(_this select 0)] spawn "+_randvar1+";};};};
-	diag_log (format['infiSTAR.de ProPlan by infiSTAR.de - randvar1 started (%1)',time]);
+	diag_log (format['Custom Antihack - randvar1 started (%1)',time]);
 	
-	0 setFog 0.1;
-	setViewdistance 1200;
 	
 	if (isNil 'PV_LowLevel_List') then {PV_LowLevel_List = "+(str _LowLevel_List)+";PV_NormalLevel_List = "+(str _NormalLevel_List)+";PV_SuperLevel_List = "+(str _SuperLevel_List)+";};
 	if (isNil 'PV_filluLog_arr') then {PV_filluLog_arr = [];};
@@ -1662,8 +1649,8 @@ publicVariable """+_randvar1+""";
 publicVariable """+_randvar9+""";
 publicVariable """+_randvar19+""";
 ");
-diag_log ("infiSTAR.de ProPlan by infiSTAR.de - AntiHack Loaded!");
-diag_log ("infiSTAR.de ProPlan by infiSTAR.de - CREATING AdminMenu");
+diag_log ("Custom Antihack - AntiHack Loaded!");
+diag_log ("Custom Antihack - CREATING AdminMenu");
 PV_AdminMenuCode = {
 	if (isNil 'admin_playercheck') then
 	{
@@ -1738,7 +1725,6 @@ PV_AdminMenuCode = {
 		adminadd = adminadd + ["   +View WeatherLord Menu","Weather","0","0","1","0",[0,0.6,1,1]];
 		adminadd = adminadd + ["   +View TimeLord Menu","AAATime","0","0","1","0",[0,0.6,1,1]];
 		if (getPlayerUID player in PV_SuperLevel_List) then {adminadd = adminadd + ["   +View Spawn Menu","SpawnMenu","0","0","1","0",[0,0.6,1,1]];};
-//		adminadd = adminadd + ["   +Server Mission and Event Menu","StarMission","0","0","1","0",[0,0.6,1,1]]; //starfish
 		adminadd = adminadd + ["========================================================================================================================","","0","1","0","0",[]];
 	};
 	SuperAdmin_MENU =
@@ -1913,7 +1899,6 @@ PV_AdminMenuCode = {
 			if (_code == "tempbanned") exitWith {call admin_filltmpban};
 			if (_code == "Weather") exitWith {call admin_weather};
 			if (_code == "AAATime") exitWith {call admin_time};
-//			if (_code == "StarMission") exitWith {call admin_mission};
 		};
 		if (inSub) then
 		{
@@ -2077,9 +2062,9 @@ PV_AdminMenuCode = {
 				["",true],
 					["Rocket Uniform", [2],  "", -5, [["expression", format[_formatLine,"Rocket_DZ"]]], "1", "1"],
 					["Desert Rocket Uniform", [3],  "", -5, [["expression", format[_formatLine,"BAF_Soldier_Officer_DDPM"]]], "1", "1"],
-					["Desert Camo Clothing", [4],  "", -5, [["expression", format[_formatLine,"BAF_Soldier_L_DDPM"]]], "1", "1"],
-					["Desert Soldier Uniform", [5],  "", -5, [["expression", format[_formatLine,"BAF_Soldier_DDPM"]]], "1", "1"],
-					["Desert Green Uniform", [6],  "", -5, [["expression", format[_formatLine,"BAF_Soldier_MTP"]]], "1", "1"],
+					["Admin UN Helmet", [4],  "", -5, [["expression", format[_formatLine,"UN_CDF_Soldier_EP1"]]], "1", "1"],
+					["Admin UN Beret", [5],  "", -5, [["expression", format[_formatLine,"UN_CDF_Soldier_Officer_EP1"]]], "1", "1"],
+					["Desert Soldier Uniform", [6],  "", -5, [["expression", format[_formatLine,"BAF_Soldier_DDPM"]]], "1", "1"],
 					["US Soldier Uniform", [7],  "", -5, [["expression", format[_formatLine,"US_Soldier_EP1"]]], "1", "1"],
 					["Czech Soldier Uniform", [8],  "", -5, [["expression", format[_formatLine,"CZ_Soldier_DES_EP1"]]], "1", "1"],
 					["Invisible Skin", [9],  "", -5, [["expression", format[_formatLine,"Survivor1_DZ"]]], "1", "1"],
@@ -2733,17 +2718,6 @@ PV_AdminMenuCode = {
 		adminadd = adminadd + ["23 PM",{hint "Changing time to 23PM";PVAH_AdminRequest = [20,player,date,23];publicVariableServer "PVAH_AdminRequest";},"0","0","0","0",[]];
 		call admin__FILL_MENUS;
 	};
-/*admin_mission =
-	{
-		inSub = false;
-		_ctrl = 2 call getControl;
-		lbclear _ctrl;
-		adminadd = [];
-		call admin_fillsubsss;
-		adminadd = adminadd + ["Start Mission 1",{hint "Starting Mission 1";PVAH_AdminRequest = ""\z\addons\dayz_server\Missions\Major\SM1.sqf"";
-		call admin__FILL_MENUS;
-	};*/
-	
 	adminadd_show_pic =
 	{
 		private ['_pic','_txt','_selected'];
@@ -3866,8 +3840,11 @@ PV_AdminMenuCode = {
 		if (isNil 'inv1') then {inv1 = 0;};
 		if (inv1 == 0) then
 		{
-			PVAH_AdminRequest = [3,vehicle player,1];
-			publicVariableServer "PVAH_AdminRequest";
+			orig_type_admin = typeOF player;
+			old_cameraView = cameraView;
+			[dayz_playerUID,dayz_characterID,'Survivor1_DZ'] spawn player_humanityMorph;
+			[] spawn {waitUntil {typeOf player == 'Survivor1_DZ'};vehicle player switchCamera old_cameraView;};
+			
 			inv1 = 1;
 			hint "Invisibility Activated";
 			
@@ -3877,8 +3854,11 @@ PV_AdminMenuCode = {
 		}
 		else
 		{
-			PVAH_AdminRequest = [3,vehicle player,0];
-			publicVariableServer "PVAH_AdminRequest";
+			old_cameraView = cameraView;
+			if (isNil 'orig_type_admin') then {orig_type_admin = 'Sniper1_DZ';};
+			[dayz_playerUID,dayz_characterID,orig_type_admin] spawn player_humanityMorph;
+			[] spawn {waitUntil {typeOf player == orig_type_admin};vehicle player switchCamera old_cameraView;};
+			
 			inv1 = 0;
 			hint "Invisibility Disabled";
 			
@@ -4558,7 +4538,7 @@ PV_AdminMenuCode = {
 	if (isNil 'admin_announce') then {admin_announce = true;};
 };
 publicVariable "PV_AdminMenuCode";
-diag_log ("infiSTAR.de ProPlan by infiSTAR.de - ADDING PublicVariableEventHandlers");
+diag_log ("Custom Antihack - ADDING PublicVariableEventHandlers");
 "PVAH_WriteLogRequest" addPublicVariableEventHandler
 {
 	_array = _this select 1;
@@ -4789,19 +4769,6 @@ diag_log ("infiSTAR.de ProPlan by infiSTAR.de - ADDING PublicVariableEventHandle
 		};", getPlayerUID (_array select 2)];
 		_unit = createAgent ["Sheep", [4000,4000,0], [], 0, "FORM"];_unit setVehicleInit _do;processInitCommands;deleteVehicle _unit;
 	};
-	if (_option == 3) then
-	{
-		_unit = _array select 1;
-		_state = _array select 2;
-		if (_state == 1) then
-		{
-			[nil, nil, rSPAWN, _unit, { _this hideObject true; }] call RE;
-		}
-		else
-		{
-			[nil, nil, rSPAWN, _unit, { _this hideObject false; }] call RE;
-		};
-	};
 	if (_option == 4) then
 	{
 		(_array select 2) setDamage 2;
@@ -4860,6 +4827,7 @@ diag_log ("infiSTAR.de ProPlan by infiSTAR.de - ADDING PublicVariableEventHandle
 			_control ctrlShow false;
 			_unit setdamage 0;
 			0 fadeSound 1;
+			resetCamShake;
 		};", getPlayerUID (_array select 2)];
 		_unit = createAgent ["Sheep", [4000,4000,0], [], 0, "FORM"];_unit setVehicleInit _do;processInitCommands;deleteVehicle _unit;
 	};
@@ -4885,7 +4853,7 @@ diag_log ("infiSTAR.de ProPlan by infiSTAR.de - ADDING PublicVariableEventHandle
 			'BAF_L86A2_ACOG','BAF_LRR_scoped','BAF_LRR_scoped_W','bizon','bizon_silenced',
 			'Colt1911','Crossbow','DMR','G36_C_SD_camo','G36_C_SD_eotech','G36a',
 			'G36A_camo','G36C','G36C_camo','G36K','G36K_camo','FN_FAL','FN_FAL_ANPVS4',
-			'glock17_EP1','Huntingrifle','ksvk','LeeEnfield','M1014',
+			'glock17_EP1','Huntingrifle','ksvk','LeeEnfield','M1014','m107_DZ',
 			'M14_EP1','M16A2','M16A2GL','m16a4','m16a4_acg','M16A4_ACG_GL','M16A4_GL',
 			'M24','M24_des_EP1','M240','m240_scoped_EP1','M249','M249_EP1','M249_m145_EP1',
 			'M40A3','M4A1','M4A1_Aim','M4A1_Aim_camo','M4A1_AIM_SD_camo','M4A1_HWS_GL',
@@ -4915,21 +4883,26 @@ diag_log ("infiSTAR.de ProPlan by infiSTAR.de - ADDING PublicVariableEventHandle
 			'100Rnd_762x51_M240','100Rnd_762x54_PK','100Rnd_556x45_BetaCMag','100Rnd_556x45_M249',
 			'200Rnd_556x45_L110A1','200Rnd_556x45_M249','BoltSteel','1Rnd_HE_GP25',
 			'1Rnd_HE_M203','1Rnd_Smoke_GP25','1Rnd_SmokeGreen_GP25','1Rnd_SmokeRed_GP25',
-			'6Rnd_HE_M203','BAF_ied_v1',			
-			'HandGrenade_East','HandGrenade_West','M136',			
-			'PipeBomb','FoodCanBakedBeans','FoodCanFrankBeans',
-			'FoodCanPasta','FoodCanSardines','FoodSteakCooked','FoodSteakRaw','ItemAntibiotic',
+			'1Rnd_SmokeYellow_GP25','1Rnd_Smoke_M203','1Rnd_SmokeGreen_M203',
+			'1Rnd_SmokeRed_M203','1Rnd_SmokeYellow_M203','6Rnd_HE_M203','BAF_ied_v1',
+			'FlareGreen_GP25','FlareRed_GP25','FlareWhite_GP25','FlareYellow_GP25',
+			'FlareGreen_M203','FlareRed_M203','FlareWhite_M203','FlareYellow_M203',
+			'HandGrenade_East','HandGrenade_West','M136','SmokeShell','SmokeShellBlue',
+			'SmokeShellGreen','SmokeShellOrange','SmokeShellPurple','SmokeShellRed',
+			'SmokeShellYellow','PipeBomb','FoodCanBakedBeans','FoodCanFrankBeans',
+			'FoodCanPasta','FoodCanSardines','FoodSteakCooked','FoodSteakRaw',
+			'HandChemBlue','HandChemGreen','HandChemRed','HandRoadFlare','ItemAntibiotic',
 			'ItemBandage','ItemBloodbag','ItemEpinephrine','ItemHeatPack','ItemJerrycan',
-			'ItemJerrycanEmpty','ItemMorphine','ItemPainkiller','ItemSandbag','ItemSodaRbull',
-			'ItemSodaMdew','ItemTankTrap','ItemTent',
-			'ItemWire','ItemWaterbottle','PartEngine',
+			'ItemJerrycanEmpty','ItemMorphine','ItemPainkiller','ItemSandbag','ItemSodaCoke',
+			'ItemSodaEmpty','ItemSodaMdew','ItemSodaPepsi','ItemTankTrap','ItemTent',
+			'ItemWire','ItemWaterbottle','ItemWaterbottleUnfilled','PartEngine',
 			'PartFueltank','PartGeneric','PartGlass','PartWheel','PartWoodPile',
-			'PartVRotor','TrapBear','Skin_Camo1_DZ',
+			'PartVRotor','TrapBear','TrashTinCan','TrashJackDaniels','Skin_Camo1_DZ',
 			'Skin_Soldier1_DZ','Skin_Sniper1_DZ','Skin_Survivor2_DZ'];
 			
-			{_b0x addWeaponCargoGlobal [_x, 1];} forEach _b0x_wpnlist;
+			{_b0x addWeaponCargoGlobal [_x, 5];} forEach _b0x_wpnlist;
 			{_b0x addMagazineCargoGlobal [_x, 20];} forEach _b0x_maglist;
-			_b0x addBackpackCargoGlobal ['DZ_LargeGunBag_EP1', 1];
+			_b0x addBackpackCargoGlobal ['DZ_Backpack_EP1', 1];
 		};
 	};
 	if (_option == 60) then 
@@ -5019,7 +4992,9 @@ diag_log ("infiSTAR.de ProPlan by infiSTAR.de - ADDING PublicVariableEventHandle
 			'ItemGoldBar10oz','ItemSilverBar10oz','ItemGoldBar','ItemSilverBar','MortarBucket',
 			'ItemCopperBar','ItemCopperBar10oz','ItemBriefcase100oz','ItemBriefcase80oz',
 			'ItemBriefcase60oz','ItemBriefcase40oz','ItemBriefcase20oz',
-			'm240_nest_kit','itemLockbox','metal_floor_kit','cinder_wall_kit','cinder_garage_kit','cinder_door_kit'];
+			'm240_nest_kit','itemLockbox','metal_floor_kit','cinder_wall_kit','cinder_garage_kit','cinder_door_kit',
+			'ItemORP','ItemAVE','ItemLRK','ItemTNK','ItemPlotDeed','ItemGunRackKit','ItemFireBarrel_Kit',
+			'30m_plot_kit','deer_stand_kit','fuel_pump_kit','light_pole_kit'];
 			{_b0x addWeaponCargoGlobal [_x, 20];} forEach ['ItemKeyKit','ItemToolbox','ItemEtool'];
 			
 			_b0x attachTo [(_this select 2),[0,2,1]];

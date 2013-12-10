@@ -25,15 +25,15 @@ if ((typeName _objectID != "string") || (typeName _uid != "string")) then
     _objectID = "0";
     _uid = "0";
 };
-
-if (!_parachuteWest and !(locked _object)) then {
-	//if (_objectID == "0" && _uid == "0") then
-	if (_objectID == "0" && _uid == "0" && (vehicle _object getVariable ["Sarge",0] != 1)) then
-	{
-		_object_position = getPosATL _object;
-    	_isNotOk = true;
+	if (!_parachuteWest and !(locked _object)) then {
+		if (_objectID == "0" && _uid == "0") then {
+			if (_objectID == "0" && _uid == "0" && (vehicle _object getVariable ["Sarge",0] != 1)) then
+			{
+				_object_position = getPosATL _object;
+				_isNotOk = true;
+			};
+		};
 	};
-};
 //Mission System
 //if (_object getVariable "Mission" == 1) exitWith {};
 if (_object getVariable "Sarge" == 1) exitWith {};
@@ -106,7 +106,8 @@ _object_damage = {
 _object_killed = {
 	private["_hitpoints","_array","_hit","_selection","_key","_damage"];
 	_hitpoints = _object call vehicle_getHitpoints;
-	_damage = damage _object;
+	//_damage = damage _object;
+	_damage = 1;
 	_array = [];
 	{
 		_hit = [_object,_x] call object_getHit;
@@ -115,7 +116,6 @@ _object_killed = {
 		_hit = 1;
 		_object setHit ["_selection", _hit]
 	} forEach _hitpoints;
-	_damage = 1;
 	
 	if (_objectID == "0") then {
 		_key = format["CHILD:306:%1:%2:%3:",_uid,_array,_damage];

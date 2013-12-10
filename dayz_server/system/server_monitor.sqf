@@ -1,9 +1,7 @@
-private ["_result","_pos","_wsDone","_dir","_block","_isOK","_countr","_objWpnTypes","_objWpnQty","_dam","_selection","_totalvehicles","_object","_idKey","_type","_ownerID","_worldspace","_intentory","_hitPoints","_fuel","_damage","_date","_script","_key","_outcome","_vehLimit","_hiveResponse","_objectCount","_codeCount","_objectArray","_hour","_minute","_data","_status","_val","_traderid","_retrader","_traderData","_id","_lockable","_debugMarkerPosition","_vehicle_0"];
-[]execVM "\z\addons\dayz_server\system\s_fps.sqf"; //server monitor FPS (writes each ~181s diag_fps+181s diag_fpsmin*)
+private ["_nul","_result","_pos","_wsDone","_dir","_block","_isOK","_countr","_objWpnTypes","_objWpnQty","_dam","_selection","_totalvehicles","_object","_idKey","_type","_ownerID","_worldspace","_intentory","_hitPoints","_fuel","_damage","_date","_key","_outcome","_vehLimit","_hiveResponse","_objectCount","_codeCount","_objectArray","_hour","_minute","_data","_status","_val","_traderid","_retrader","_traderData","_id","_lockable","_debugMarkerPosition","_vehicle_0"];
 
 dayz_versionNo = 		getText(configFile >> "CfgMods" >> "DayZ" >> "version");
 dayz_hiveVersionNo = 	getNumber(configFile >> "CfgMods" >> "DayZ" >> "hiveVersion");
-_script = getText(missionConfigFile >> "onPauseScript");
 
 if ((count playableUnits == 0) and !isDedicated) then {
 	isSinglePlayer = true;
@@ -14,52 +12,22 @@ waitUntil{initialized}; //means all the functions are now defined
 diag_log "HIVE: Starting";
 
 waituntil{isNil "sm_done"}; // prevent server_monitor be called twice (bug during login of the first player)
-
-//Set the Time
-//Send request
-_key = "CHILD:307:";
-_result = _key call server_hiveReadWrite;
-_outcome = _result select 0;
-if(_outcome == "PASS") then {
-	_date = _result select 1; 
-		
-	if(dayz_fullMoonNights) then {
-		//date setup
-		//_year = _date select 0;
-		//_month = _date select 1;
-		//_day = _date select 2;
-		_hour = _date select 3;
-		_minute = _date select 4;
-		
-		//Force full moon nights
-		_date = [2013,8,3,_hour,_minute];
-	};
-		
-	if(isDedicated) then {
-		setDate _date;
-		PVDZE_plr_SetDate = _date;
-		publicVariable "PVDZE_plr_SetDate";
-	};
-
-	diag_log ("HIVE: Local Time set to " + str(_date));
-};
-
 	
 // Custom Configs
 if(isnil "MaxVehicleLimit") then {
-	MaxVehicleLimit = 300; //default 50
+	MaxVehicleLimit = 500;
 };
 if(isnil "MaxHeliCrashes") then {
-	MaxHeliCrashes = 5; //default 5
+	MaxHeliCrashes = 0;
 };
 if(isnil "MaxDynamicDebris") then {
-	MaxDynamicDebris = 100; //default 100
+	MaxDynamicDebris = 0;
 };
 if(isnil "MaxAmmoBoxes") then {
-	MaxAmmoBoxes = 5; //default 5
+	MaxAmmoBoxes = 0;
 };
 if(isnil "MaxMineVeins") then {
-	MaxMineVeins = 50; //default 50
+	MaxMineVeins = 0;
 };
 // Custon Configs End
 
@@ -87,7 +55,7 @@ if (isServer and isNil "sm_done") then {
 		_objectCount = _hiveResponse select 1;
 		diag_log ("HIVE: Commence Object Streaming...");
 		for "_i" from 1 to _objectCount do { 
-			_hiveResponse = _key call server_hiveReadWrite;
+			_hiveResponse = _key call server_hiveReadWriteLarge;
 			_objectArray set [_i - 1, _hiveResponse];
 			//diag_log (format["HIVE dbg %1 %2", typeName _hiveResponse, _hiveResponse]);
 		};
@@ -170,10 +138,6 @@ if (isServer and isNil "sm_done") then {
 			
 			clearWeaponCargoGlobal  _object;
 			clearMagazineCargoGlobal  _object;
-//remove all vehicle ammo on restart, not just epoch starfish
-//if (_object isKindOf "AllVehicles") then {
-//_object setVehicleAmmo 0;
-//};
 			// _object setVehicleAmmo DZE_vehicleAmmo;
 			
 			if ((typeOf _object) in dayz_allowedObjects) then {
@@ -182,13 +146,12 @@ if (isServer and isNil "sm_done") then {
 				_object enableSimulation false;
 				// used for inplace upgrades and lock/unlock of safe
 				_object setVariable ["OEMPos", _pos, true];
-				if ((typeOf _object) in ["Plastic_Pole_EP1_DZ","Land_HBarrier3_DZ","Land_HBarrier1_DZ","MetalPanel_DZ","MetalFloor_DZ","CinderWallDoorSmallLocked_DZ","CinderWallDoorLocked_DZ"]) then {
-					//SKARONATOR GODMODE
-					//_object addEventHandler ["HandleDamage", {false}];
+				//Building Godmode
+				if ((typeOf _object) in ["CinderWall_DZ","Plastic_Pole_EP1_DZ","Land_HBarrier3_DZ","Land_HBarrier1_DZ","MetalPanel_DZ","MetalFloor_DZ","CinderWallDoorSmallLocked_DZ","CinderWallDoorLocked_DZ"]) then {
+					_object addEventHandler ["HandleDamage", {false}];
 					//_object enableSimulation false;
-					_object allowDamage false; 
+					//_object allowDamage false; 
 					diag_log format["SetGod for Obj: %1", _object];
-					//SKARONATOR GODMODE END
 				};
 			};
 			
@@ -269,9 +232,7 @@ if (isServer and isNil "sm_done") then {
 				if (!((typeOf _object) in dayz_allowedObjects)) then {
 					
 					//_object setvelocity [0,0,1];
-					_object call fnc_veh_ResetEH;	
-					
-					//[_object, _class] call fnc_veh_ammo; //starfish
+					_object call fnc_veh_ResetEH;		
 					
 					if(_ownerID != "0" and !(_object isKindOf "Bicycle")) then {
 						_object setvehiclelock "locked";
@@ -367,7 +328,7 @@ if (isServer and isNil "sm_done") then {
 
 	// [_guaranteedLoot, _randomizedLoot, _frequency, _variance, _spawnChance, _spawnMarker, _spawnRadius, _spawnFire, _fadeFire]
 	if(OldHeliCrash) then {
-		nul = [3, 4, (50 * 60), (15 * 60), 0.75, 'center', HeliCrashArea, true, false] spawn server_spawnCrashSite;
+		_nul = [3, 4, (50 * 60), (15 * 60), 0.75, 'center', HeliCrashArea, true, false] spawn server_spawnCrashSite;
 	};
 
 	if (isDedicated) then {
