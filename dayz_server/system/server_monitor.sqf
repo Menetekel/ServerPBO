@@ -15,19 +15,19 @@ waituntil{isNil "sm_done"}; // prevent server_monitor be called twice (bug durin
 	
 // Custom Configs
 if(isnil "MaxVehicleLimit") then {
-	MaxVehicleLimit = 500;
+	MaxVehicleLimit = 300;
 };
 if(isnil "MaxHeliCrashes") then {
-	MaxHeliCrashes = 0;
+	MaxHeliCrashes = 5;
 };
 if(isnil "MaxDynamicDebris") then {
-	MaxDynamicDebris = 0;
+	MaxDynamicDebris = 100;
 };
 if(isnil "MaxAmmoBoxes") then {
-	MaxAmmoBoxes = 0;
+	MaxAmmoBoxes = 3;
 };
 if(isnil "MaxMineVeins") then {
-	MaxMineVeins = 0;
+	MaxMineVeins = 50;
 };
 // Custon Configs End
 
@@ -147,11 +147,11 @@ if (isServer and isNil "sm_done") then {
 				// used for inplace upgrades and lock/unlock of safe
 				_object setVariable ["OEMPos", _pos, true];
 				//Building Godmode
-				if ((typeOf _object) in ["CinderWall_DZ","Plastic_Pole_EP1_DZ","Land_HBarrier3_DZ","Land_HBarrier1_DZ","MetalPanel_DZ","MetalFloor_DZ","CinderWallDoorSmallLocked_DZ","CinderWallDoorLocked_DZ"]) then {
+				if ((typeOf _object) in ["CinderWall_DZ","Land_HBarrier5_DZ","Plastic_Pole_EP1_DZ","Land_HBarrier3_DZ","Land_HBarrier1_DZ","MetalPanel_DZ","MetalFloor_DZ","CinderWallDoorSmallLocked_DZ","CinderWallDoorLocked_DZ"]) then {
 					_object addEventHandler ["HandleDamage", {false}];
-					//_object enableSimulation false;
+					_object enableSimulation false;
 					//_object allowDamage false; 
-					diag_log format["SetGod for Obj: %1", _object];
+					//diag_log format["SetGod for Obj: %1", _object];
 				};
 			};
 			

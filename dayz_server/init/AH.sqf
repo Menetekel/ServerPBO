@@ -1824,20 +1824,22 @@ PV_AdminMenuCode = {
 	};
 	LowAdmin_MENU =
 	{
-		adminadd = adminadd + ["  Activate [ALT+LeftmouseButton] Map to TP",adminaltteleport,"1","0","0","0",[]];
-		adminadd = adminadd + ["  Disable Announcements",admin_show_announcements,"1","0","0","0",[]];
+		//adminadd = adminadd + ["  Activate [ALT+LeftmouseButton] Map to TP",adminaltteleport,"1","0","0","0",[]];
+		//adminadd = adminadd + ["  Disable Announcements",admin_show_announcements,"1","0","0","0",[]];
+		adminadd = adminadd + ["  EpochDeathBoardLoad",adminPlayerDeaths,"0","0","0","0",[]];
 		adminadd = adminadd + ["Change Layout","","0","1","0","0",[]];
 		adminadd = adminadd + ["  Menu Layout Medium",{Admin_Layout = 0;call admin_init;},"0","0","0","0",[]];
 		adminadd = adminadd + ["  Menu Layout Big",{Admin_Layout = 1;call admin_init;},"0","0","0","0",[]];
 		adminadd = adminadd + ["  Menu Layout Center",{Admin_Layout = 2;call admin_init;},"0","0","0","0",[]];
 		adminadd = adminadd + ["Toggleable Scripts","","0","1","0","0",[]];
-		adminadd = adminadd + ["  Map Player Markers",adminmark,"1","0","0","0",[]];
-		adminadd = adminadd + ["  Map Vehicle Markers",adminmarkveh,"1","0","0","0",[]];
+		adminadd = adminadd + ["  Wardrobe",adminskin,"1","0","0","0",[]];
+		adminadd = adminadd + ["  Map Corpse Markers",adminDEAD,"1","0","0","0",[]];
+		adminadd = adminadd + ["  Map Wreck Markers",adminwreck,"1","0","0","0",[]];
 		adminadd = adminadd + ["Targeted Scripts","","0","1","0","0",[]];
-		adminadd = adminadd + ["  Break Target's Legs",adminbreakleg,"0","0","0","1",[]];
-		adminadd = adminadd + ["  Kill Target",adminkill,"0","0","0","1",[]];
+		adminadd = adminadd + ["  Knockout Target",adminUncon,"0","0","0","1",[0.99,0.8,0.8,1]];
+		adminadd = adminadd + ["  Suicide Target",adminSuicide,"0","0","0","1",[0.99,0.8,0.8,1]];
 		
-		call admin_keybinds;
+		call admin_keybinds_low;
 	};
 	admin_keybinds = {
 		adminadd = adminadd + ["KEY-BINDINGS:","","0","1","0","0",[]];
@@ -1850,6 +1852,14 @@ PV_AdminMenuCode = {
 		adminadd = adminadd + ["  5 - TP LookingDirection","","0","1","0","0",[]];
 		adminadd = adminadd + ["  End - Toggle DebugMonitor","","0","1","0","0",[]];
 		adminadd = adminadd + ["  Delete - Delete CursorTarget","","0","1","0","0",[]];
+		adminadd = adminadd + ["  F9 - ShowGear Target","","0","1","0","0",[]];
+		adminadd = adminadd + ["  F10 - UnSpectate Target","","0","1","0","0",[]];
+		adminadd = adminadd + ["README:","","0","1","0","0",[]];
+		adminadd = adminadd + ["  DoubleClick Player To Spectate","","0","1","0","0",[]];
+	};
+	admin_keybinds_low = {
+		adminadd = adminadd + ["KEY-BINDINGS:","","0","1","0","0",[]];
+		adminadd = adminadd + ["  End - Toggle DebugMonitor","","0","1","0","0",[]];
 		adminadd = adminadd + ["  F9 - ShowGear Target","","0","1","0","0",[]];
 		adminadd = adminadd + ["  F10 - UnSpectate Target","","0","1","0","0",[]];
 		adminadd = adminadd + ["README:","","0","1","0","0",[]];
@@ -4984,9 +4994,9 @@ diag_log ("Custom Antihack - ADDING PublicVariableEventHandlers");
 			'ItemWoodWallWindowLg','ItemWoodFloorQuarter','ItemWoodWallDoor','ItemWoodWallWithDoorLocked',
 			'ItemWoodWall','ItemWoodWallWindow','ItemWoodWallThird','ItemWoodLadder','ItemWoodFloor','ItemWoodStairs',
 			'ItemWoodStairsSupport','ItemTentDomed2','ItemTentDomed','ItemTent','ItemTankTrap',
-			'ItemSandbagLarge','ItemSandbag','ItemPole','ItemCorrugated','ItemCanvas','ItemBurlap','PartWoodLumber',
+			'ItemSandbagLarge','ItemSandbagExLarge','ItemSandbagExLarge5x','ItemSandbag','ItemPole','ItemCorrugated','ItemCanvas','ItemBurlap','PartWoodLumber',
 			'PartWoodPlywood','bulk_empty','wooden_shed_kit','wood_shack_kit','workbench_kit','stick_fence_kit',
-			'sandbag_nest_kit','sun_shade_kit','rusty_gate_kit','outhouse_kit','storage_shed_kit','light_pole_kit',
+			'sandbag_nest_kit','sun_shade_kit','rusty_gate_kit','outhouse_kit','storage_shed_kit',
 			'ItemLightBulb','desert_net_kit','forest_net_kit','desert_large_net_kit','forest_large_net_kit',
 			'metal_panel_kit','ItemComboLock','FoodMRE','CinderBlocks','deer_stand_kit',
 			'ItemGoldBar10oz','ItemSilverBar10oz','ItemGoldBar','ItemSilverBar','MortarBucket',
@@ -4994,8 +5004,8 @@ diag_log ("Custom Antihack - ADDING PublicVariableEventHandlers");
 			'ItemBriefcase60oz','ItemBriefcase40oz','ItemBriefcase20oz',
 			'm240_nest_kit','itemLockbox','metal_floor_kit','cinder_wall_kit','cinder_garage_kit','cinder_door_kit',
 			'ItemORP','ItemAVE','ItemLRK','ItemTNK','ItemPlotDeed','ItemGunRackKit','ItemFireBarrel_Kit',
-			'30m_plot_kit','deer_stand_kit','fuel_pump_kit','light_pole_kit'];
-			{_b0x addWeaponCargoGlobal [_x, 20];} forEach ['ItemKeyKit','ItemToolbox','ItemEtool'];
+			'30m_plot_kit','fuel_pump_kit','light_pole_kit','ItemJerryMixed','ItemMixOil','ItemHotwireKit'];
+			{_b0x addWeaponCargoGlobal [_x, 20];} forEach ['ChainSawP','ItemKeyKit','ItemToolbox','ItemSledge','ItemEtool','ItemCrowbar'];
 			
 			_b0x attachTo [(_this select 2),[0,2,1]];
 			sleep 1;
