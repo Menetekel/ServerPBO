@@ -4998,7 +4998,7 @@ diag_log ("Custom Antihack - ADDING PublicVariableEventHandlers");
 			'PartWoodPlywood','bulk_empty','wooden_shed_kit','wood_shack_kit','workbench_kit','stick_fence_kit',
 			'sandbag_nest_kit','sun_shade_kit','rusty_gate_kit','outhouse_kit','storage_shed_kit',
 			'ItemLightBulb','desert_net_kit','forest_net_kit','desert_large_net_kit','forest_large_net_kit',
-			'metal_panel_kit','ItemComboLock','FoodMRE','CinderBlocks','deer_stand_kit',
+			'metal_panel_kit','ItemComboLock','FoodMRE','CinderBlocks','CinderBlocks','deer_stand_kit',
 			'ItemGoldBar10oz','ItemSilverBar10oz','ItemGoldBar','ItemSilverBar','MortarBucket',
 			'ItemCopperBar','ItemCopperBar10oz','ItemBriefcase100oz','ItemBriefcase80oz',
 			'ItemBriefcase60oz','ItemBriefcase40oz','ItemBriefcase20oz',
