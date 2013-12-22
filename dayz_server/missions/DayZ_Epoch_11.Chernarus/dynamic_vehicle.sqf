@@ -64,7 +64,6 @@ AllowedVehiclesList = [
 ["MtvrRefuel_DES_EP1_DZ",1],
 ["UralRefuel_TK_EP1_DZ",1],
 ["V3S_Refuel_TK_GUE_EP1_DZ",1],
-["MtvrRefuel_DZ",1],
 /* ---------------------------Military unarmed-------------------------- */ 
 ["HMMWV_M1035_DES_EP1",1],
 ["HMMWV_Ambulance",1],
