@@ -1,6 +1,6 @@
 /* ********************************************************************************* */
 /* *******************Developer : infiSTAR (infiSTAR23@gmail.com)******************* */
-/* ********************Copr. ©2013 infiSTAR all rights reserved********************* */
+/* ********************Copr. Â©2013 infiSTAR all rights reserved********************* */
 /* *********************************www.infiSTAR.de********************************* */
 /*  Key to open the menu  */ _OpenMenuKey = 0x3C;    /* google DIK_KeyCodes (0x3C is F2) */
 /* ********************************************************************************* */
@@ -14,7 +14,7 @@
 /*  Top esc menu TXT      */ _TopOfESC = 'DayZ Epoch'; //do not use ' or " in this text.
 /*  Bottom esc menu TXT   */ _LowerTop = 'RedDiamond'; //do not use ' or " in this text.
 /*  Bottom esc menu TXT2  */ _LowerBottom = 'by GermanDayZ.de'; //do not use ' or " in this text.
-/*  Color esc menu TXT    */ _EscColor = [0,0.8,1,1];
+/*  Color esc menu TXT    */ _EscColor = [0,0.3,1,1];
 /* ********************************************************************************* */
 /*  DebugMonitor TXT      */ _BottomDebug = 'GermanDayZ.de'; //do not use ' or " in this text.
 /*  DebugMonitor Key      */ _ODK =  0xCF;	/* google DIK_KeyCodes (0xCF is END) */
@@ -30,7 +30,7 @@
 /*  Use FileScan ?        */ _UFS =  true;   /* true or false */	/* recommended:  true */	/* spams the rpt but often finds hackers */
 /*  Use cut-scene ?       */ _UCS =  true;   /* true or false */	/* recommended:  true */	/* dynamicText ~ often colored, animated or used in credits */
 /*  Use SafeZones ?       */ _USZ =  true;   /* true or false */	/* recommended:  true */	/* if you have a zone where people get godmode/anti zombie aggro (most Epoch server do have this!) */
-/*  HACKED BOX Check ?    */ _CHB =  true;   /* true or false */	/* recommended:  true */	/* some epoch player might want to turn this one off */
+/*  HACKED BOX Check ?    */ _CHB = true;   /* true or false */	    /* recommended:  true */	/* some epoch player might want to turn this one off */
 /*  Check CMDMenus ?      */ _CCM =  true;   /* true or false */	/* recommended:  true */	/* only disable this if you know what you are doing. */
 /*  BLOCK ALL CMDMenus    */ _BCM =  true;   /* true or false */	/* recommended:  true */	/* we don't need commandingMenus. so have this true. */
 /*  Check Actions ?       */ _CSA = false;   /* true or false */	/* recommended:  true */	/* R3F vehicle towing can't be whitelisted so we need to turn this off */
@@ -51,12 +51,14 @@
 	'RscWatchDir','RscDisplayClassSelecter','RscDisplayGenderSelect',
 	'RscDisplaySpawnSelecter','RscWatchMoreDir','#GETIN','RscStatus',
 	'RscCombatMode','RscFormations','RscTeam','RscSelectTeam','RscReply',
-	'RscCallSupport','#ACTION','#CUSTOM_RADIO','RscRadio','RscGroupRootMenu'
+	'RscCallSupport','#ACTION','#CUSTOM_RADIO','RscRadio','RscGroupRootMenu',
+	'BTC_Hud'
 ];
 /* ********************************************************************************* */
 /*  ALLOWED Actions are only used if you have _CSA =  true;  */
 /*  ALLOWED Actions      */ _dayzActions =
 "([
+	BTC_SganciaActionId,BTC_liftActionId,BTC_liftHudId,
 	dayz_myCursorTarget,s_player_craftZombieBait,wardrobe,s_player_butcher_human,s_player_makeBomb,s_player_zombieShield,s_player_upgrademoto,
 	s_player_smeltRecipes,null,churchie_check,churchie_defuse,churchie_rig_veh,player_Cannibalism,s_player_fillfuel210,s_player_knockout,s_player_upgradegyro,ActionMenu,
 	manatee_craft_menu,manatee_craft_menu_wea,manatee_craft_menu_sur,manatee_craft_menu_ind,s_player_craftZombieBaitBomb,horror_traders,s_player_takeOwnership,s_siphon,s_player_suicide,
@@ -89,7 +91,7 @@
 	unpackRavenAct,disassembleRavenAct,launchRavenAct,strobeRavenResetAct,strobeRavenTestAct,
 	batteryLevelCheckRavenAct,batteryRechargeRavenAct,mavBaseStationActionName_00,mavBaseStationActionName_001,
 	mavBaseStationActionName_01,mavBaseStationActionName_02,mavBaseStationActionName_03,mavBaseStationActionName_04,
-	s_player_dance,s_player_igniteTent,s_player_clothes,
+		s_player_dance,s_player_igniteTent,s_player_clothes,
 	STR_R3F_ARTY_action_ouvrir_dlg_SM,
 	STR_R3F_LOG_action_remorquer_deplace,
 	STR_R3F_LOG_action_selectionner_objet_remorque,
@@ -109,6 +111,7 @@
 	STR_R3F_LOG_ne_pas_monter_dans_vehicule,
 	STR_R3F_LOG_courir_trop_vite,
 	STR_R3F_LOG_action_selectionner_objet_charge_fait,
+
 	STR_R3F_LOG_action_charger_selection,
 	STR_R3F_LOG_action_charger_selection_en_cours,
 	STR_R3F_LOG_action_charger_selection_fait,
@@ -144,5 +147,5 @@
 ] + s_player_removeActions + s_player_repairActions + r_player_actions + r_player_actions2 + s_player_parts + s_player_combi + s_player_lockunlock)";
 /* ********************************************************************************* */
 /* *******************Developer : infiSTAR (infiSTAR23@gmail.com)******************* */
-/* ********************Copr. ©2013 infiSTAR all rights reserved********************* */
+/* ********************Copr. Â©2013 infiSTAR all rights reserved********************* */
 /* *********************************www.infiSTAR.de********************************* */
